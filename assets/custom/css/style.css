@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Inter:300,400&display=swap');
+
+body{
+  font-family: 'Inter', sans-serif;
+  background: rgb(241, 241, 241) !important;
+}
+
+.main-content-c{
+    margin-top: 80px;
+}
+
+.fxplor-nav{
+  background: rgb(255, 255, 255);
+}
+
+.fw-300{ font-weight: 300 !important; }
+
+.navbar-bg{
+  background-color: #273bd6;
+}
+
+.bsdn{ box-shadow: none; }
+.dn {display: none !important;}
