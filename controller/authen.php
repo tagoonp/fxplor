@@ -61,6 +61,36 @@ if($stage == 'get_notification_unread'){
   die();
 }
 
+if($stage == 'info'){
+  if(
+      (!isset($_POST['uid'])) ||
+      (!isset($_POST['role']))
+    ){
+      mysqli_close($conn);
+      die();
+    }
+
+    $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+    $role = mysqli_real_escape_string($conn, $_POST['role']);
+
+    $strSQL = "SELECT * FROM fr3x_account WHERE UID = '$uid' AND role = '$role' AND allow_stage = 'Y' AND delete_stage = 'N'";
+    $query = mysqli_query($conn, $strSQL);
+    if(($query) && (mysqli_num_rows($query) > 0)){
+        while($row = mysqli_fetch_array($query)){
+            $b = array();
+            foreach ($row as $key => $value) {
+              if(!is_int($key)){
+                $b[$key] = $value;
+              }
+            }
+            $return[] = $b;
+        }
+    }
+    echo json_encode($return);
+    mysqli_close($conn);
+    die();
+}
+
 if($stage == 'current_user'){ //
   $uid = mysqli_real_escape_string($conn, $_POST['uid']);
   $return = array();

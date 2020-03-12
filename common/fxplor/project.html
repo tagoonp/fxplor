@@ -324,13 +324,17 @@
   <script type="text/javascript" src="../../node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
   <script type="text/javascript" src="../../node_modules/preload.js/dist/js/preload.js"></script>
 
-  <script src="../../assets/js/stisla.js"></script>
-  <script src="../../assets/js/scripts.js"></script>
+  <script type="text/javascript" src="../../assets/js/stisla.js"></script>
+  <script type="text/javascript" src="../../assets/js/scripts.js"></script>
+
+  <script type="text/javascript" src="../../assets/custom/js/config.js"></script>
+  <script type="text/javascript" src="../../assets/custom/js/core.js"></script>
+  <script type="text/javascript" src="../../assets/custom/js/authen.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function(){
       setTimeout(function(){
-        preload.hide();
+        user.init('init')
         $('#btnSidebar').trigger('click') }, 300
       )
 
