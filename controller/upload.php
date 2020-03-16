@@ -13,15 +13,12 @@ if(!isset($_GET['stage'])){
 $stage = mysqli_real_escape_string($conn, $_GET['stage']);
 
 if($stage == 'csv'){
-  if(!isset($_POST['txtIdProject'])){
-    mysqli_close($conn);
-    die();
-  }
+  if((!isset($_GET['pid'])) || (!isset($_GET['uid']))){ mysqli_close($conn); die(); }
 
-  $pid = mysqli_real_escape_string($conn, $_POST['txtIdProject']);
+  $pid = mysqli_real_escape_string($conn, $_GET['pid']);
+  $uid = mysqli_real_escape_string($conn, $_GET['uid']);
 
-  if(isset($_GET['files']))
-  {
+
       $error = false;
       $files = array();
 
@@ -32,42 +29,57 @@ if($stage == 'csv'){
 
       $uploaddir = $path."/";
 
+      // foreach($_FILES as $file){
+      //
+      //     $tempFile = $file['tmp_name'];
+      //     $filename = $pid.'-'.date('U').'-'.basename($file['name']);
+      //     $fullpart = $uploaddir.$filename;
+      //     $url = ROOT_DOMAIN."upload/".$filename;
+      //
+      //     // if(move_uploaded_file($file['tmp_name'], $uploaddir.basename($file['name'])))
+      //     if(move_uploaded_file($file['tmp_name'], $uploaddir.$filename))
+      //     {
+      //         $files[] = $uploaddir.$file['name'];
+      //
+      //         $strSQL = "UPDATE fr3x_user_upload SET file_status = 'N' WHERE file_pid = '$pid'";
+      //         $queryUpdate = mysqli_query($conn, $strSQL);
+      //
+      //         $strSQL = "INSERT INTO fr3x_user_upload (file_name, file_url, file_type, file_pid, file_datetime)
+      //                     VALUES ('$filename', '$url', 'CSV', '$pid', '$sysadate')";
+      //         $query = mysqli_query($conn, $strSQL);
+      //
+      //         echo "Y";
+      //
+      //     }
+      //     else
+      //     {
+      //         $error = true;
+      //     }
+      // }
+      //
+      // $data = ($error) ? array('error' => 'There was an error uploading your files') : array('files' => $files);
+
       foreach($_FILES as $file){
+        $strSQL = "UPDATE fr3x_user_upload SET file_status = 'N' WHERE file_pid = '$pid'";
+        $queryUpdate = mysqli_query($conn, $strSQL);
 
-          $tempFile = $file['tmp_name'];
-          $filename = $pid.'-'.date('U').'-'.basename($file['name']);
-          $fullpart = $uploaddir.$filename;
-          $url = ROOT_DOMAIN."upload/".$filename;
-
-          // if(move_uploaded_file($file['tmp_name'], $uploaddir.basename($file['name'])))
-          if(move_uploaded_file($file['tmp_name'], $uploaddir.$filename))
-          {
-              $files[] = $uploaddir.$file['name'];
-
-              $strSQL = "UPDATE fr3x_user_upload SET file_status = 'N' WHERE file_pid = '$pid'";
-              $queryUpdate = mysqli_query($conn, $strSQL);
-              
-              $strSQL = "INSERT INTO fr3x_user_upload (file_name, file_url, file_type, file_pid, file_datetime)
-                          VALUES ('$filename', '$url', 'CSV', '$pid', '$sysadate')";
-              $query = mysqli_query($conn, $strSQL);
-
-              echo "Y";
-
+        $tempFile = $file['tmp_name'];
+        $filename = $pid.'-'.date('U').'-'.basename($file['name']);
+        $fullpart = ROOT_DOMAIN."upload/".$filename;
+        if(move_uploaded_file($file['tmp_name'], $uploaddir.$filename)){
+          $strSQL = "INSERT INTO fr3x_user_upload (file_name, file_url, file_type, file_pid, file_datetime)
+                    VALUES ('$filename', '$fullpart', 'CSV', '$pid', '$sysdatetime')";
+          $query = mysqli_query($conn, $strSQL);
+          if($query){
+            echo "Y";
+          }else{
+            echo "N1";
           }
-          else
-          {
-              $error = true;
-          }
+        }else{
+          echo "N2";
+        }
       }
 
-      $data = ($error) ? array('error' => 'There was an error uploading your files') : array('files' => $files);
-  }
-  else
-  {
-      $data = array('success' => 'Form was submitted', 'formData' => $_POST);
-  }
-
-  echo json_encode($data);
   mysqli_close($conn);
   die();
 }

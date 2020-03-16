@@ -81,6 +81,10 @@ var project = {
     window.localStorage.setItem(conf.prefix + 'project', pid)
     window.location = 'project-manage.php'
   },
+  goto_manage_data(data_id){
+    window.localStorage.setItem(conf.prefix + 'data', data_id)
+    window.location = 'project-manage-data.php'
+  },
   get_list(hl){
     preload.show()
     var param = {uid: current_user}
@@ -102,9 +106,95 @@ var project = {
                  }
                  if(hl == 'get_list'){ preload.hide() }
                })
+  },
+  getFileData(hl){
+    var param = {pid: current_project}
+    var jxr = $.post(conf.api + 'project?stage=get_file_list', param, function(){}, 'json')
+               .always(function(snap){
+                 if(fnc.json_exist(snap)){
+                   $c = 1;
+                   $('#resultDataList').empty()
+                   snap.forEach(i=>{
+                     $('#resultDataList').append('<tr><td style="vertical-align: top;" class="pt-2 pb-2">' + $c + '</td>' +
+                                                '<td style="vertical-align: top;" class="pt-2 pb-2"><strong  onclick="project.goto_manage(\'' + i.PID + '\')" style="cursor: pointer;">' + i.file_name + '</strong><div><div><small>URL : <span class="text-primary">' + i.file_url + '</span></small></div></td><td class="text-right pt-2 pb-2" style="vertical-align: top;">' +
+                                                '<button class="btn btn-small bsdn" onclick="project.goto_manage_data(\'' + i.ID + '\')"><i class="fas fa-wrench"></i></button>' +
+                                                '<button class="btn btn-small bsdn" onclick="project.delete_data(\'' + i.ID + '\')"><i class="fas fa-trash"></i></button>' +
+                                            '</td></tr>')
+                     $c++;
+                   })
+                 }else{
+                   $('#resultDataList').html('<tr><td colspan="3" class="text-center">No data source found.</td></tr>')
+                 }
+                 if(hl == 'getFileData'){ preload.hide() }
+               })
+  },
+  getDataManagementInfo(hl){
+    var param = {
+      pid: current_project,
+      did: current_data,
+      uid: current_user
+    }
+    var jxr = $.post(conf.api + 'project_data_manage?stage=get_var_info', param, function(){}, 'json')
+               .always(function(snap){
+                 console.log(snap);
+                 // console.log(snap[2].column_type);
+                 if(fnc.json_exist(snap[2].column_type)){
+                   $c = 0; $i = 1;
+                   $('#resultDataList').empty()
+                   for (var i = 0; i < snap[2].column_type.length; i++) {
+                     // console.log(snap[2].column_type[i]);
+                     $('#resultDataList').append('<tr>' +
+                                                    '<td>' + $i + '</td>' +
+                                                    '<td><a href="#" style="font-weight: bold;">' + snap[1].column_name[i] + '</a></td>' +
+                                                    '<td>' + snap[2].column_type[i] + '</td>' +
+                                                    '<td>' + '</td>' +
+                                                    '<td>' + '</td>' +
+                                                    '<td class="text-right">' +
+                                                      '<button class="btn btn-small bsdn" onclick="project.goto_explore_data(\'' + snap[1].column_name[i] + '\')"><i class="fas fa-search"></i></button>' +
+                                                    '</td>' +
+                                                  '</tr>'
+                                                )
+                     $i++; $c++;
+                   }
+                 }else{
+                   console.log('asd');
+                 }
+               })
+    if(hl == 'getDataManagementInfo'){ preload.hide() }
+  },
+  goto_explore_data(var_name){
+    // preload.show()
+    var param = {uid: current_user, pid: current_project, did: current_data, varname: var_name}
+    var jxr = $.post(conf.api + 'project_data_manage?stage=explore_basic', param, function(){}, 'json')
+               .always(function(snap){
+                 if(fnc.json_exist(snap[2].column_type)){
+
+                 }else{
+
+                 }
+               })
+    $('#modalExplorer').modal()
   }
 }
 
+$(function(){
+  var dropzone_1 = new Dropzone("#mydropzone_1", {
+    url: conf.api + 'upload?stage=csv&pid=' + current_project + '&uid=' + current_user,
+    acceptedFiles: '.csv, text/csv',
+    maxFilesize: 100,
+    maxFiles: 1,
+    init: function(){
+      this.on("complete", function(file) {
+        this.removeFile(file);
+        console.log(file.xhr.responseText);
+        if(file.xhr.responseText == 'Y'){
+          preload.show()
+          project.getFileData('getFileData')
+        }
+      });
+    }
+  });
+})
 
 function uploadFiles(event){
 
@@ -122,11 +212,10 @@ function uploadFiles(event){
       $.each(value, function(key, value){
         formData.append(key, value);
       })
-      console.log(value);
+      // console.log(value);
   });
-
-  // console.log(formData);
-  // return ;
+  console.log(formData);
+  return ;
   $.ajax({
 
     xhr: function(){
@@ -154,9 +243,9 @@ function uploadFiles(event){
     success: function(data, textStatus, jqXHR)
     {
       preload.hide()
-          console.log(data);
-          console.log(textStatus);
-          console.log(jqXHR);
+          // console.log(data);
+          // console.log(textStatus);
+          // console.log(jqXHR);
           setTimeout(function(){
             $('#progressbar').addClass('dn')
             swal({    title: "อัพโหลดไฟล์สำเร็จ",

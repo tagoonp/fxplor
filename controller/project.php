@@ -102,3 +102,29 @@ if($stage == 'get_list'){
   mysqli_close($conn);
   die();
 }
+
+if($stage == 'get_file_list'){
+  if(!isset($_POST['pid'])) {
+    mysqli_close($conn);
+    die();
+  }
+
+  $pid = mysqli_real_escape_string($conn, $_POST['pid']);
+
+  $strSQL = "SELECT * FROM fr3x_user_upload WHERE file_pid = '$pid' AND file_status = 'Y'";
+  $result = mysqli_query($conn, $strSQL);
+  if(($result) && (mysqli_num_rows($result) > 0)){
+    while($row = mysqli_fetch_array($result)){
+        $b = array();
+        foreach ($row as $key => $value) {
+          if(!is_int($key)){
+            $b[$key] = $value;
+          }
+        }
+        $return[] = $b;
+    }
+  }
+  echo json_encode($return);
+  mysqli_close($conn);
+  die();
+}

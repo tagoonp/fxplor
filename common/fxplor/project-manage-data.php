@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Layout &rsaquo; Top Navigation &mdash; Stisla</title>
+  <title>FXplor: Data Explorer and Management</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" >
@@ -278,7 +278,7 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Create project</h1>
+            <h1>Explore and Data management</h1>
           </div>
 
           <div class="section-body">
@@ -287,55 +287,23 @@
                 <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="window.location='project'"><span class="bg-primary p-1 text-white"><i class="fas fa-chevron-left"></i></span> <span class="text-primary">Back to project list</span></button>
               </div>
             </div>
-            <h6 class="mt-3">Project information</h6>
-            <div class="card mt-0">
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="">Project title : </label>
-                  <textarea name="txtTitle" id="txtTitle" class="form-control" rows="8" cols="80"></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="">Description : </label>
-                  <textarea name="txtDesc" id="txtDesc" class="form-control" rows="8" cols="80" style="height: 200px !important;"></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="">Category : </label>
-                  <select class="form-control" name="txtCat" id="txtCat">
-                    <option value="">-- Select --</option>
-                  </select>
-                </div>
-
-                <div class="form-group text-left">
-                  <button type="submit" name="button" class="btn btn-primary btn-sm bsdn">Update</button>
-                </div>
-              </div>
-            </div>
-            <!-- .card -->
-
-            <h6 class="mt-2">Data source</h6>
+            <h6 class="mt-3">Variable information</h6>
             <div class="card mt-0">
               <div class="card-body p-0">
-
-                <div class="p-3">
-                  <button type="button" name="button" class="btn btn-primary- bsdn btn-lg" disabled>File upload (.txt)</button>
-                  <button type="button" name="button" class="btn btn-primary bsdn btn-lg" data-toggle="modal" data-target="#modalCSV" onclick="setProjectId()">File upload (.csv)</button>
-                  <button type="button" name="button" class="btn btn-primary- bsdn btn-lg" disabled>API URL (JSON)</button>
-                  <button type="button" name="button" class="btn btn-primary- bsdn btn-lg" disabled>MySQL Database</button>
-                </div>
-
                 <table class="table table-striped">
                   <thead class="bg-primary">
                     <tr>
-                      <th class="text-white">#</th>
-                      <th class="text-white">Data source name</th>
+                      <th class="text-white" style="width: 50px;">#</th>
+                      <th class="text-white" style="width: 150px;">Var.name</th>
+                      <th class="text-white" style="width: 150px;">Data type</th>
+                      <th class="text-white" style="width: 250px;">Recommendation</th>
+                      <th class="text-white">Desc.</th>
                       <th class="text-white" style="width: 150px;"></th>
                     </tr>
                   </thead>
                   <tbody id="resultDataList">
                     <tr>
-                      <td colspan="3" class="text-center">No data source found.</td>
+                      <td colspan="5" class="text-center">No data source found.</td>
                     </tr>
                   </tbody>
                 </table>
@@ -357,26 +325,21 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="modalCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <div class="modal fade" id="modalExplorer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Upload CSV file</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <form class="dropzone" id="mydropzone_1">
-              <div class="fallback">
-                <input name="file" type="file" multiple />
-              </div>
-              <input type="text" name="txtUploadIdrs_1" id="txtUploadIdrs_1" class="txtUploadIdrs dn">
-            </form>
+            ...
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary-" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" id="uploadFileCSV">Upload</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -402,19 +365,19 @@
 
   <script type="text/javascript">
 
-    if(current_project == null){
+    if(current_data == null){
       window.location = './project.php'
     }
-    console.log(current_project);
+    console.log(current_data);
 
     $(document).ready(function(){
 
       project.getDomain()
 
       setTimeout(function(){
-        user.init('init')
+        user.init()
         project.getInfo()
-        project.getFileData()
+        project.getDataManagementInfo('getDataManagementInfo')
         $('#btnSidebar').trigger('click')
       }, 300)
 
