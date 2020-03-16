@@ -263,19 +263,10 @@
                   <li><a class="nav-link" href="./fxplor/sharing">Sharing</a></li>
                 </ul>
               </li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-ellipsis-h"></i> <span>Utilities</span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="utilities-contact.html">Contact</a></li>
-                  <li><a class="nav-link" href="utilities-invoice.html">Invoice</a></li>
-                  <li><a href="utilities-subscribe.html">Subscribe</a></li>
-                </ul>
-              </li>
-              <li><a class="nav-link" href="credits.html"><i class="fas fa-pencil-ruler"></i> <span>Credits</span></a></li>
             </ul>
 
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+              <a href="Javascript:openDoc()" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
               </a>
             </div>
@@ -292,14 +283,19 @@
           <div class="section-body">
             <div class="row">
               <div class="col-12 pb-2">
-                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn"><span class="bg-primary p-1 text-white"><i class="fas fa-plus"></i></span> <span class="text-primary">Create new project</span></button>
-                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn"><span class="bg-primary p-1 text-white"><i class="fas fa-redo"></i></span> <span class="text-primary">Refresh</span></button>
+                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="window.location='project-create'"><span class="bg-primary p-1 text-white"><i class="fas fa-plus"></i></span> <span class="text-primary">Create new project</span></button>
+                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="project.get_list('get_list')"><span class="bg-primary p-1 text-white"><i class="fas fa-redo"></i></span> <span class="text-primary">Refresh</span></button>
               </div>
             </div>
-            <h6 class="text-dark">Projects</h6>
+            <h6 class="text-dark mt-3">Projects</h6>
             <div class="card">
-              <div class="card-body">
-                asd
+              <div class="card-body p-0" id="textResult">
+                <div class="p-3">
+                  No project found.
+                  <p class="mb-0">
+                    <a href="./project-create"><i class="fas fa-plus"></i> Click here to create your first project</a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -330,8 +326,10 @@
   <script type="text/javascript" src="../../assets/custom/js/config.js"></script>
   <script type="text/javascript" src="../../assets/custom/js/core.js"></script>
   <script type="text/javascript" src="../../assets/custom/js/authen.js"></script>
+  <script type="text/javascript" src="../../assets/custom/js/project.js"></script>
 
   <script type="text/javascript">
+    project.get_list()
     $(document).ready(function(){
       setTimeout(function(){
         user.init('init')
@@ -339,9 +337,6 @@
       )
 
     })
-
-
-
   </script>
 
 </body>

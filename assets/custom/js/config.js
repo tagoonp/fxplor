@@ -11,7 +11,7 @@ var conf = {
 var current_user = window.localStorage.getItem(conf.prefix + 'uid')
 var current_role = window.localStorage.getItem(conf.prefix + 'role')
 // var current_province = window.localStorage.getItem(conf.prefix + 'province')
-// var current_cid = window.localStorage.getItem(conf.prefix + 'cid')
+var current_project = window.localStorage.getItem(conf.prefix + 'project')
 
 // checkVersion
 // var versionJxr = $.post(conf.api + 'checkversion', function(){})
