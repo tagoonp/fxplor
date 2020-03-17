@@ -178,22 +178,7 @@ var project = {
 }
 
 $(function(){
-  var dropzone_1 = new Dropzone("#mydropzone_1", {
-    url: conf.api + 'upload?stage=csv&pid=' + current_project + '&uid=' + current_user,
-    acceptedFiles: '.csv, text/csv',
-    maxFilesize: 100,
-    maxFiles: 1,
-    init: function(){
-      this.on("complete", function(file) {
-        this.removeFile(file);
-        console.log(file.xhr.responseText);
-        if(file.xhr.responseText == 'Y'){
-          preload.show()
-          project.getFileData('getFileData')
-        }
-      });
-    }
-  });
+  
 })
 
 function uploadFiles(event){

@@ -368,7 +368,6 @@
     if(current_data == null){
       window.location = './project.php'
     }
-    console.log(current_data);
 
     $(document).ready(function(){
 
