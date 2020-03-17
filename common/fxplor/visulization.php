@@ -259,9 +259,9 @@
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown active" data-toggle="dropdown"><img src="../../img/fxplor-logo-4-active.png" alt="" width="30"> <span class="ml-3">Fxplor</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" href="../fxplor/project">Projects</a></li>
-                  <li><a class="nav-link" href="../fxplor/visulization">Visulization</a></li>
-                  <li><a class="nav-link" href="../fxplor/sharing">Sharing</a></li>
+                  <li><a class="nav-link" href="./fxplor/project">Projects</a></li>
+                  <li class="active"><a class="nav-link" href="./fxplor/visulization">Visulization</a></li>
+                  <li><a class="nav-link" href="./fxplor/sharing">Sharing</a></li>
                 </ul>
               </li>
             </ul>
@@ -278,7 +278,7 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Create project</h1>
+            <h1>Fxplor visualization</h1>
           </div>
 
           <div class="section-body">
@@ -287,61 +287,28 @@
                 <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="window.location='project'"><span class="bg-primary p-1 text-white"><i class="fas fa-chevron-left"></i></span> <span class="text-primary">Back to project list</span></button>
               </div>
             </div>
-            <h6 class="mt-3">Project information</h6>
-            <div class="card mt-0">
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="">Project title : </label>
-                  <textarea name="txtTitle" id="txtTitle" class="form-control" rows="8" cols="80"></textarea>
-                </div>
 
-                <div class="form-group">
-                  <label for="">Description : </label>
-                  <textarea name="txtDesc" id="txtDesc" class="form-control" rows="8" cols="80" style="height: 200px !important;"></textarea>
+            <div class="row">
+              <div class="col-12 col-sm-3">
+                <h6 class="mt-3">Variables</h6>
+                <div class="card mt-0">
+                  <div class="card-body p-0">
+                    <table class="table table-striped">
+                      <tbody id="resultParamList">
+                        <tr>
+                          <td colspan="1" class="text-center">No data source found.</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+                <!-- .card -->
+              </div>
+              <div class="col-12 col-sm-7">
 
-                <div class="form-group">
-                  <label for="">Category : </label>
-                  <select class="form-control" name="txtCat" id="txtCat">
-                    <option value="">-- Select --</option>
-                  </select>
-                </div>
-
-                <div class="form-group text-left">
-                  <button type="submit" name="button" class="btn btn-primary btn-sm bsdn">Update</button>
-                </div>
               </div>
             </div>
-            <!-- .card -->
 
-            <h6 class="mt-2">Data source</h6>
-            <div class="card mt-0">
-              <div class="card-body p-0">
-
-                <div class="p-3">
-                  <button type="button" name="button" class="btn btn-primary- bsdn btn-lg" disabled>File upload (.txt)</button>
-                  <button type="button" name="button" class="btn btn-primary bsdn btn-lg" data-toggle="modal" data-target="#modalCSV" onclick="setProjectId()">File upload (.csv)</button>
-                  <button type="button" name="button" class="btn btn-primary- bsdn btn-lg" disabled>API URL (JSON)</button>
-                  <button type="button" name="button" class="btn btn-primary- bsdn btn-lg" disabled>MySQL Database</button>
-                </div>
-
-                <table class="table table-striped">
-                  <thead class="bg-primary">
-                    <tr>
-                      <th class="text-white">#</th>
-                      <th class="text-white">Data source name</th>
-                      <th class="text-white" style="width: 150px;"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="resultDataList">
-                    <tr>
-                      <td colspan="3" class="text-center">No data source found.</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- .card -->
 
           </div>
         </section>
@@ -414,7 +381,7 @@
       setTimeout(function(){
         user.init('init')
         project.getInfo()
-        project.getFileData()
+        project.getDataManagementInfo('getDataManagementInfo')
         $('#btnSidebar').trigger('click')
       }, 300)
 

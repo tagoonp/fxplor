@@ -258,9 +258,9 @@
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown active" data-toggle="dropdown"><img src="../../img/fxplor-logo-4-active.png" alt="" width="30"> <span class="ml-3">Fxplor</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" href="./fxplor/project">Projects</a></li>
-                  <li><a class="nav-link" href="./fxplor/visulization">Visulization</a></li>
-                  <li><a class="nav-link" href="./fxplor/sharing">Sharing</a></li>
+                  <li class="active"><a class="nav-link" href="../fxplor/project">Projects</a></li>
+                  <li><a class="nav-link" href="../fxplor/visulization">Visulization</a></li>
+                  <li><a class="nav-link" href="../fxplor/sharing">Sharing</a></li>
                 </ul>
               </li>
             </ul>

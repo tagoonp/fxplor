@@ -259,9 +259,9 @@
               <li class="nav-item dropdown active">
                 <a href="#" class="nav-link has-dropdown active" data-toggle="dropdown"><img src="../../img/fxplor-logo-4-active.png" alt="" width="30"> <span class="ml-3">Fxplor</span></a>
                 <ul class="dropdown-menu">
-                  <li class="active"><a class="nav-link" href="./fxplor/project">Projects</a></li>
-                  <li><a class="nav-link" href="./fxplor/visulization">Visulization</a></li>
-                  <li><a class="nav-link" href="./fxplor/sharing">Sharing</a></li>
+                  <li class="active"><a class="nav-link" href="../fxplor/project">Projects</a></li>
+                  <li><a class="nav-link" href="../fxplor/visulization">Visulization</a></li>
+                  <li><a class="nav-link" href="../fxplor/sharing">Sharing</a></li>
                 </ul>
               </li>
             </ul>
@@ -329,17 +329,38 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Variable exploration</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="row">
+              <div class="col-12">
+                <button type="button" name="button" class="btn btn-primary bsdn" onclick="prokect"><i class="fas fa-play"></i> Start explore</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 pt-3" id="exploreResult">
+                <div class="p-3 text-center" style="border: dashed; border-width: 2px; border-color: rgb(226, 226, 226);">
+                  No explore process
+                </div>
+              </div>
+            </div>
+
+            <div class="management mt-3 dn-">
+              <h6>Management</h6>
+              <div class="row">
+                <div class="col-12">
+                  <form class="" onsubmit="return false;">
+                    <div class="form-group">
+                      <label for="">Variable description : <br><small>This info will descript in visulization and Data information page</small> </label>
+                      <textarea name="name" class="form-control" rows="8" cols="80"></textarea>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

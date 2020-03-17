@@ -141,6 +141,7 @@ var project = {
                  if(fnc.json_exist(snap[2].column_type)){
                    $c = 0; $i = 1;
                    $('#resultDataList').empty()
+                     $('#resultParamList').empty()
                    for (var i = 0; i < snap[2].column_type.length; i++) {
                      // console.log(snap[2].column_type[i]);
                      $('#resultDataList').append('<tr>' +
@@ -154,6 +155,16 @@ var project = {
                                                     '</td>' +
                                                   '</tr>'
                                                 )
+
+                      $('#resultParamList').append('<tr>' +
+                                                     '<td>' +
+                                                      '<label class="colorinput">' +
+                                                          '<input name="color" type="checkbox" value="primary" class="colorinput-input" />' +
+                                                          '<span class="colorinput-color bg-primary"></span>' + snap[1].column_name[i] +
+                                                        '</label>' +
+                                                     '</td>' +
+                                                   '</tr>'
+                                                 )
                      $i++; $c++;
                    }
                  }else{
@@ -178,7 +189,7 @@ var project = {
 }
 
 $(function(){
-  
+
 })
 
 function uploadFiles(event){

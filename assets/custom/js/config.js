@@ -1,8 +1,8 @@
 var conf = {
-    // domain: 'http://localhost/fxplor/',
-    // api : 'http://localhost/fxplor/controller/',
-    domain: 'http://35.213.189.153/fxplor/',
-    api : 'http://35.213.189.153/fxplor/controller/',
+    domain: 'http://localhost/fxplor/',
+    api : 'http://localhost/fxplor/controller/',
+    // domain: 'http://35.213.189.153/fxplor/',
+    // api : 'http://35.213.189.153/fxplor/controller/',
     prefix: 'x3sw_',
     current_version: '1.0.0',
     os: 'android'
