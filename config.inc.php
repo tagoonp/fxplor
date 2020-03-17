@@ -5,20 +5,20 @@ date_default_timezone_set("Asia/Bangkok");
 /** The name of the database for WisniorWeb */
 
 // ------------- RMIS REAL on rmis2.medicine.psu.ac.th ----------------------
-// define( 'DB_NAME', 'informalworker' );
-// define( 'DB_HOST', 'localhost' );
-// define( 'DB_USER', 'root' );
-// define( 'DB_PASSWORD', 'mandymorenn' );
-// define( 'TB_PREFIX', '' );
-// define( 'ROOT_DOMAIN', 'https://fxplor.com/');
+define( 'DB_NAME', 'fxplor' );
+define( 'DB_USER', 'phpmyadmin' );
+define( 'DB_PASSWORD', 'mandymorenn' );
+define( 'DB_HOST', 'localhost' );
+define( 'TB_PREFIX', '' );
+define( 'ROOT_DOMAIN', 'http://35.213.189.153/fxplor/' );
 
 // ------------- RMIS TEST on fxplor ----------------------
-define( 'DB_NAME', 'fxplor' );
-define( 'DB_USER', 'rmis5' );
-define( 'DB_PASSWORD', 'rmis5' );
-define( 'DB_HOST', '157.230.46.106' );
-define( 'TB_PREFIX', '' );
-define( 'ROOT_DOMAIN', 'http://localhost/fxplor/' );
+// define( 'DB_NAME', 'fxplor' );
+// define( 'DB_USER', 'rmis5' );
+// define( 'DB_PASSWORD', 'rmis5' );
+// define( 'DB_HOST', '157.230.46.106' );
+// define( 'TB_PREFIX', '' );
+// define( 'ROOT_DOMAIN', 'http://localhost/fxplor/' );
 
 // Define system parameters
 $sysdate = date('Y-m-d');
