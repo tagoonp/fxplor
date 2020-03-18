@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.css">
   <link rel="stylesheet" href="../../node_modules/sweetalert/dist/sweetalert.css">
   <link rel="stylesheet" href="../../node_modules/preload.js/dist/css/preload.css">
+  <link rel="stylesheet" href="../../node_modules/dropzone/dist/min/dropzone.min.css">
 
   <!-- CSS Libraries -->
 
@@ -25,7 +26,7 @@
     <div class="main-wrapper main-wrapper-1">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <form class="form-inline mr-auto">
+        <div class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg" id="btnSidebar"><i class="fas fa-bars"></i></a></li>
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
@@ -92,7 +93,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </div>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown dropdown-list-toggle  dn"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
             <div class="dropdown-menu dropdown-list dropdown-menu-right">
@@ -277,24 +278,33 @@
       <div class="main-content">
         <section class="section">
           <div class="section-header">
-            <h1>Fxplor visualization</h1>
+            <h1>Visualization</h1>
           </div>
 
           <div class="section-body">
             <div class="row">
               <div class="col-12 pb-2">
-                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="window.location='project-create'"><span class="bg-primary p-1 text-white"><i class="fas fa-plus"></i></span> <span class="text-primary">Create new project</span></button>
-                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="project.get_list('get_list')"><span class="bg-primary p-1 text-white"><i class="fas fa-redo"></i></span> <span class="text-primary">Refresh</span></button>
+                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="window.location='visulization'"><span class="bg-primary p-1 text-white"><i class="fas fa-chevron-left"></i></span> <span class="text-primary">Back to project shared with me</span></button>
               </div>
             </div>
-            <h6 class="text-dark mt-3">Shared with me project</h6>
-            <div class="card">
-              <div class="card-body p-0" id="textResult2">
-                <div class="p-3">
-                  No project found.
-                  <p class="mb-0">
-                    <a href="./project-create"><i class="fas fa-plus"></i> Click here to create your first project</a>
-                  </p>
+
+            <div class="row">
+              <div class="col-12 col-sm-3">
+                <h6 class="mt-3">Variable list</h6>
+                <div class="" id="paramList" style="max-height: 500px; overflow-x: hidden;">
+
+                </div>
+              </div>
+              <div class="col-12 col-sm-9">
+                <h6 class="mt-3">Visualization</h6>
+                <div class="card mt-0">
+                  <div class="card-body">
+                    <div class="visualZone" style="height: 500px;">
+                      <div class="text-center" style="padding-top: 240px;">
+                        No visualization running.
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -319,6 +329,8 @@
   <script type="text/javascript" src="../../node_modules/moment/min/moment.min.js"></script>
   <script type="text/javascript" src="../../node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
   <script type="text/javascript" src="../../node_modules/preload.js/dist/js/preload.js"></script>
+  <script type="text/javascript" src="../../node_modules/dropzone/dist/min/dropzone.min.js"></script>
+  <script type="text/javascript" src="../../node_modules/d3-master/d3/dist/d3.js"></script>
 
   <script type="text/javascript" src="../../assets/js/stisla.js"></script>
   <script type="text/javascript" src="../../assets/js/scripts.js"></script>
@@ -329,14 +341,39 @@
   <script type="text/javascript" src="../../assets/custom/js/project.js"></script>
 
   <script type="text/javascript">
-    project.get_list()
+
+    if(current_project == null){
+      window.location = './project.php'
+    }
+    console.log(current_project);
+
     $(document).ready(function(){
+
+      project.getDomain()
+
       setTimeout(function(){
         user.init('init')
-        $('#btnSidebar').trigger('click') }, 300
-      )
+        project.getInfo()
+        // project.getFileData()
+        project.getDataManagementInfo('getDataManagementInfo')
+        project.visualize()
+        $('#btnSidebar').trigger('click')
+      }, 300)
+
+
 
     })
+
+    $(function(){
+      $('.project-create-form').submit(function(){
+        project.create()
+      })
+    })
+
+    function setProjectId(){
+      $('.txtIdProject').val(current_project)
+    }
+
   </script>
 
 </body>

@@ -1,0 +1,26 @@
+PARAM,LABEL,CESAREAN,PRETERM,LBW
+N,Number of cases,494,113,140
+VIS_PCT,Visulize icon size percentage,100.00,22.87,28.34
+VIS_ICON_LEVEL,Iconic size level,1,4,3
+dm,Diabetes mellitus,0,0,0
+ht,Hypertension,0,0,0
+hd,Heart disease,0,0,0
+typa,Type of birth attendant,1,1,1
+age,Age,0,0,0
+rel,Religion,,1,2
+edu,Education,0,0,0
+grav,Gravidity,0,0,0
+anc,ANC,2,0,0
+ga1st,GA at 1st ANC,3,0,0
+prot,Urine protine,1,0,0
+sbpad,SPB at admission,0,0,0
+dbpad,DBP at admission,0,0,2
+pr,Pulse rate,0,1,0
+fhr,Fetal heart rate,0,0,0
+labora,Labour status,1,0,0
+gaadm,GA at admission,0,0,0
+gadel,GA at delivery,0,1,1
+bll2h,Blood lose,1,0,0
+preterm,Preterm status,0,0,1
+cesarean,Cesarean status,0,0,0
+lbw,Lob birth weight status,0,0,0

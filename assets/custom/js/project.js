@@ -79,7 +79,11 @@ var project = {
   },
   goto_manage(pid){
     window.localStorage.setItem(conf.prefix + 'project', pid)
-    window.location = 'project-manage.php'
+    window.location = 'project-manage'
+  },
+  goto_visualization(pid){
+    window.localStorage.setItem(conf.prefix + 'project', pid)
+    window.location = 'project-visualization'
   },
   goto_manage_data(data_id){
     window.localStorage.setItem(conf.prefix + 'data', data_id)
@@ -90,19 +94,23 @@ var project = {
     var param = {uid: current_user}
     var jxr = $.post(conf.api + 'project?stage=get_list', param, function(){},'json')
                .always(function(snap){
-                 console.log(snap);
                  if(fnc.json_exist(snap)){
                    $('#textResult').html('<table class="table table-striped mb-0"><thead><tr style="background: rgb(71, 71, 71);"><th style="width: 50px; " class="text-white">#</th><th class="text-white">Title</th><th style="width: 150px !important;" class="text-white"></th></tr></thead><tbody id="resultList"></tbody></table>')
+                   $('#textResult2').html('<table class="table table-striped mb-0"><thead><tr style="background: rgb(71, 71, 71);"><th style="width: 50px; " class="text-white">#</th><th class="text-white">Title</th><th style="width: 150px !important;" class="text-white"></th></tr></thead><tbody id="resultList2"></tbody></table>')
                    $c = 1;
                    snap.forEach(i=>{
                      $('#resultList').append('<tr><td style="vertical-align: top;" class="pt-2 pb-2">' + $c + '</td><td style="vertical-align: top;" class="pt-2 pb-2"><strong  onclick="project.goto_manage(\'' + i.PID + '\')" style="cursor: pointer;">' + i.proj_title + '</strong><div><small>' + i.proj_desc + '</small></div><div><small>Category : <span class="text-primary">' + i.knw_domain + '</span></small></div></td><td class="text-right pt-2 pb-2" style="vertical-align: top;">' +
                                                 '<button class="btn btn-small bsdn" onclick="project.goto_manage(\'' + i.PID + '\')"><i class="fas fa-wrench"></i></button>' +
                                                 '<button class="btn btn-small bsdn" onclick="project.delete(\'' + i.PID + '\')"><i class="fas fa-trash"></i></button>' +
                                             '</td></tr>')
+                     $('#resultList2').append('<tr><td style="vertical-align: top;" class="pt-2 pb-2">' + $c + '</td><td style="vertical-align: top;" class="pt-2 pb-2"><strong  onclick="project.goto_manage(\'' + i.PID + '\')" style="cursor: pointer;">' + i.proj_title + '</strong><div><small><strong>Description : </strong><br>' + i.proj_desc + '</small></div><div><small>Category : <span class="text-primary">' + i.knw_domain + '</span></small></div></td><td class="text-right pt-2 pb-2" style="vertical-align: top;">' +
+                                               '<button class="btn btn-small bsdn" onclick="project.goto_visualization(\'' + i.PID + '\')"><i class="fas fa-play"></i></button>' +
+                                           '</td></tr>')
                      $c++;
                    })
                  }else{
                    $('#textResult').html('<div class="p-3">No project found.<p class="mb-0"><a href="./project-create"><i class="fas fa-plus"></i> Click here to create your first project</a></p></div>')
+                   $('#textResult2').html('<div class="p-3">No project share with you.</div>')
                  }
                  if(hl == 'get_list'){ preload.hide() }
                })
@@ -128,6 +136,13 @@ var project = {
                  if(hl == 'getFileData'){ preload.hide() }
                })
   },
+  visualize(hl){
+    var jxr = $.post(conf.api + 'project_visualize?stage=get_input_data', function(){}, 'json')
+               .always(function(snap){
+                 console.log(snap);
+               })
+    if(hl == 'visualize'){ preload.hide() }
+  },
   getDataManagementInfo(hl){
     var param = {
       pid: current_project,
@@ -136,8 +151,6 @@ var project = {
     }
     var jxr = $.post(conf.api + 'project_data_manage?stage=get_var_info', param, function(){}, 'json')
                .always(function(snap){
-                 console.log(snap);
-                 // console.log(snap[2].column_type);
                  if(fnc.json_exist(snap[2].column_type)){
                    $c = 0; $i = 1;
                    $('#resultDataList').empty()
@@ -156,15 +169,11 @@ var project = {
                                                   '</tr>'
                                                 )
 
-                      $('#resultParamList').append('<tr>' +
-                                                     '<td>' +
-                                                      '<label class="colorinput">' +
-                                                          '<input name="color" type="checkbox" value="primary" class="colorinput-input" />' +
-                                                          '<span class="colorinput-color bg-primary"></span>' + snap[1].column_name[i] +
-                                                        '</label>' +
-                                                     '</td>' +
-                                                   '</tr>'
-                                                 )
+                      $('#paramList').append('<div><label class="custom-switch mt-2 pl-0">' +
+                        '<input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input" checked>' +
+                        '<span class="custom-switch-indicator"></span>' +
+                        '<span class="custom-switch-description">' + snap[1].column_name[i] + '</span>' +
+                      '</label></div>')
                      $i++; $c++;
                    }
                  }else{
