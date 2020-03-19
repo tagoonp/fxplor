@@ -19,6 +19,25 @@
   <link rel="stylesheet" href="../../assets/css/components.css">
 
   <link rel="stylesheet" href="../../assets/custom/css/style.css">
+
+  <style media="screen">
+
+  circle.node {
+    stroke: #fff;
+    stroke-width: 3px;
+}
+
+line.link {
+    stroke-width: 2px;
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+
+marker#arrow {
+    stroke: #999;
+    fill: #999;
+}
+  </style>
 </head>
 
 <body>
@@ -299,11 +318,18 @@
                 <h6 class="mt-3">Visualization</h6>
                 <div class="card mt-0">
                   <div class="card-body">
-                    <div class="visualZone" style="height: 500px;">
-                      <div class="text-center" style="padding-top: 240px;">
+                    <!-- <svg id="visualZone" style="height: 500px;"> -->
+                      <!-- <div class="text-center" style="padding-top: 240px;">
                         No visualization running.
-                      </div>
-                    </div>
+                      </div> -->
+                    <!-- </svg> -->
+                    <svg id="visualZone" width="800" height="600">
+                      <defs>
+                        <marker id="arrow" viewbox="0 -5 10 10" refX="18" refY="0" markerWidth="6" markerHeight="6" orient="auto">
+                         <path d="M0,-5L10,0L0,5Z">
+                        </marker>
+                      </defs>
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -330,7 +356,8 @@
   <script type="text/javascript" src="../../node_modules/jquery.nicescroll/dist/jquery.nicescroll.min.js"></script>
   <script type="text/javascript" src="../../node_modules/preload.js/dist/js/preload.js"></script>
   <script type="text/javascript" src="../../node_modules/dropzone/dist/min/dropzone.min.js"></script>
-  <script type="text/javascript" src="../../node_modules/d3-master/d3/dist/d3.js"></script>
+  <!-- <script type="text/javascript" src="../../node_modules/d3-master/d3/dist/d3.js"></script> -->
+  <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
 
   <script type="text/javascript" src="../../assets/js/stisla.js"></script>
   <script type="text/javascript" src="../../assets/js/scripts.js"></script>
@@ -339,6 +366,56 @@
   <script type="text/javascript" src="../../assets/custom/js/core.js"></script>
   <script type="text/javascript" src="../../assets/custom/js/authen.js"></script>
   <script type="text/javascript" src="../../assets/custom/js/project.js"></script>
+
+  <script type="text/javascript">
+  var width = 800;
+  var height = 600;
+
+  var color = d3.scale.category10();
+
+  var force = d3.layout.force()
+      .charge(-180)
+      .linkDistance(70)
+      .size([width, height]);
+
+  var svg = d3.select("#visualZone");
+
+  d3.json("cloud.json", function(json) {
+      force
+          .nodes(json.nodes)
+          .links(json.links)
+          .start();
+
+      var links = svg.append("g").selectAll("line.link")
+          .data(force.links())
+          .enter().append("line")
+          .attr("class", "link")
+          .attr("marker-end", "url(#arrow)");
+
+      var nodes = svg.selectAll("circle.node")
+          .data(force.nodes())
+          .enter().append("circle")
+          .attr("class", "node")
+          .attr("r", 8)
+          .style("fill", function(d) { return color(d.group); })
+          .call(force.drag);
+
+      // nodes.append("title")
+      //     .text(function(d) { return d.name; });
+      //
+      // force.on("tick", function() {
+      //   links.attr("x1", function(d) { return d.source.x; })
+      //       .attr("y1", function(d) { return d.source.y; })
+      //       .attr("x2", function(d) { return d.target.x; })
+      //       .attr("y2", function(d) { return d.target.y; });
+      //
+      //   nodes.attr("cx", function(d) { return d.x; })
+      //       .attr("cy", function(d) { return d.y; });
+      // });
+
+
+  });
+  </script>
 
   <script type="text/javascript">
 
