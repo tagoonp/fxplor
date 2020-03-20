@@ -38,9 +38,6 @@
     // project.visualize()
     var x1 = 0, y1 = 0, x2 = 0, y2 = 0;
     var jsonCircle = [];
-    var margin = {top: 50, right: 50, bottom: 50, left: 50}
-    var width = 500
-    var height = 500
 
     var jxr = $.post(conf.api + 'project_visualize?stage=get_input_data', function(){}, 'json')
                .always(function(snap){
@@ -51,18 +48,15 @@
 
                    console.log($n_row);
                    var point = $n_row + 1
-                   var outcome = snap[0].length - 2 + 7
-                   var radious_x = width/2 - 50
-                   var radious_y = height/2 - 50
-                   var central_x = width/2 - 60
+                   var outcome = snap[0].length - 2
+                   var radious = $('svg').width()/2 - margin.left - margin.right
                    var point_outcome = parseInt(point/outcome)
-                   var eachdegree = parseFloat(360/point);
-                   console.log(eachdegree);
+                   var eachdegree = 360/point;
                    var startPoint = 0 - eachdegree;
                    // var startPoint = 0 ;
                    var originalOrigin = startPoint;
 
-                   // console.log(radious);
+                   console.log(radious);
                    $outcome_c = 0;
 
                    // Calculate distince
@@ -71,15 +65,15 @@
                      startPoint = parseInt(startPoint)
                      if((i == 0) || (i == 1)){
                        if(i == 0){
-                         x1 = calculatePoint('x', startPoint, radious_x)
-                         y1 = calculatePoint('y', startPoint, central_x)
+                         x1 = calculatePoint('x', startPoint, radious)
+                         x1 = calculatePoint('y', startPoint, radious)
                        }else{
-                         x2 = calculatePoint('x', startPoint, radious_x)
-                         y2 = calculatePoint('y', startPoint, central_x)
+                         x2 = calculatePoint('x', startPoint, radious)
+                         x2 = calculatePoint('y', startPoint, radious)
                        }
                      }
                    }
-                   var distancex = distance(x1, y1, x2, y2);
+                   var distancex = distance(x1, y1, x2, y2) / 2;
 
                    // Calculate coordinate
                    startPoint = originalOrigin
@@ -87,31 +81,21 @@
                      startPoint = startPoint + eachdegree
                      startPoint = parseInt(startPoint)
 
-                     // var x = calculatePoint('x', startPoint, radious_x) + radious_x
-                     // var y = calculatePoint('y', startPoint, radious_y) + radious_y
-
-                     var x = calculatePoint('x', startPoint, central_x) + (central_x - 50)
-                     var y = calculatePoint('y', startPoint, central_x) + (central_x - 50)
-
-
+                     var x = calculatePoint('x', startPoint, radious) + radious
+                     var y = calculatePoint('y', startPoint, radious) + radious
 
                      if($outcome_c == 0){
-                       console.log('x => ' + x + ', y => ' + y);
                        console.log('Start point');
-                       var x0 = ((distancex/2) * calculateCOS(startPoint) + x) + (central_x - 50) - (distancex)
-                       var y0 = ((distancex/2) * calculateSIN(startPoint) + y) + (central_x - 50)
-
-                       console.log('New x => ' + x0 + ', y => ' + y0);
+                       var x0 = (distancex/2) * calculateCOS(startPoint)  + x
+                       var y0 = (distancex/2) * calculateSIN(startPoint)  + y
                        // console.log('x => ' + calculatePoint('x', startPoint, radious) + ' y => ' + calculatePoint('y', startPoint, radious));
-                       jsonCircle.push({ "x_axis": x + central_x, "y_axis": y + central_x, "radius": (distancex/2), "color" : "rgb(0, 148, 255)" })
+                       jsonCircle.push({ "x_axis": x0, "y_axis": y0, "radius": (distancex/2), "color" : "rgb(0, 148, 255)" })
                      }else{
 
-                       // var x0 = (distancex/2) * calculateCOS(startPoint)  + x
-                       // var y0 = (distancex/2) * calculateSIN(startPoint)  + y
-                       // var x0 = (distancex/2) * calculateCOS(startPoint) + x + distancex
-                       // var y0 = (distancex/2) * calculateSIN(startPoint) + y + distancex
+                       var x0 = (distancex/2) * calculateCOS(startPoint)  + x
+                       var y0 = (distancex/2) * calculateSIN(startPoint)  + y
                        // jsonCircle.push({ "x_axis": calculatePoint('x', startPoint, radious) + radious, "y_axis": calculatePoint('y', startPoint, radious) + radious, "radius": 30, "color" : "rgb(207, 207, 207)" })
-                       // jsonCircle.push({ "x_axis": x + central_x, "y_axis": y + central_x, "radius": (distancex/2), "color" : "rgb(207, 207, 207)" })
+                       jsonCircle.push({ "x_axis": x0, "y_axis": y0, "radius": (distancex/2), "color" : "rgb(207, 207, 207)" })
                      }
                      if($outcome_c == point_outcome){
                        $outcome_c = 0;
@@ -131,7 +115,7 @@
 
                      // console.log("Distance = " + distance(x1, y1, x2, y2));
                    }
-                   // console.log(jsonCircle);
+                   console.log(jsonCircle);
                    displayVisualize(jsonCircle)
                  }
                })
