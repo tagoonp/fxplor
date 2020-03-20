@@ -23,12 +23,13 @@ if($stage == 'get_input_data'){
 
     while (($data = fgetcsv($handle, ",")) !== FALSE) {
         $num = count($data);
-        $buffer[]['data'] = $data;
+        // $buffer[]['data'] = $data;
+        $buffer[] = $data;
         $row++;
     }
     fclose($handle);
 
-    $return[]['data'] = $buffer;
+    $return[] = $buffer;
 
     echo json_encode($return);
     mysqli_close($conn);
