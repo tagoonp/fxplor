@@ -7,7 +7,7 @@ ht,Hypertension,0,0,0
 hd,Heart disease,0,0,0
 typa,Type of birth attendant,1,1,1
 age,Age,0,0,0
-rel,Religion,,1,2
+rel,Religion,0,1,2
 edu,Education,0,0,0
 grav,Gravidity,0,0,0
 anc,ANC,2,0,0
@@ -21,6 +21,6 @@ labora,Labour status,1,0,0
 gaadm,GA at admission,0,0,0
 gadel,GA at delivery,0,1,1
 bll2h,Blood lose,1,0,0
-preterm,Preterm status,0,0,1
-cesarean,Cesarean status,0,0,0
-lbw,Lob birth weight status,0,0,0
+CESAREAN,Cesarean status,0,0,0
+PRETERM,Preterm status,0,0,1
+LBW,Lob birth weight status,0,0,0

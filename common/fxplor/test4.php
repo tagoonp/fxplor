@@ -38,6 +38,7 @@
     // project.visualize()
     var x1 = 0, y1 = 0, x2 = 0, y2 = 0;
     var jsonCircle = [];
+
     var margin = {top: 50, right: 50, bottom: 50, left: 50}
     var width = 500
     var height = 500
@@ -60,6 +61,7 @@
                    var label_param = []
                    var indepentent = []
                    var depentent = []
+                   var array_link = []
                    // Extract data for param only
                    for (var i = 4; i < snap.length ; i++) {
                      // console.log(snap[i][0]); // Param
@@ -76,21 +78,21 @@
                        depentent.push(snap[i][0])
                      }
 
-                     if((snap[i][2] == '1') || (snap[i][3] == '1') || (snap[i][4] == '1')){
+                     if((parseInt(snap[i][2]) >= 1) || (parseInt(snap[i][3]) == 1) || (parseInt(snap[i][4]) == 1)){
                        sig_param.push(1)
                      }else{
                        sig_param.push(0)
                      }
                    }
 
-                   console.log(text_param);
-                   console.log(label_param);
-                   console.log(indepentent);
-                   console.log(depentent);
+                   // console.log(text_param);
+                   // console.log(label_param);
+                   // console.log(indepentent);
+                   // console.log(depentent);
 
                    // console.log(eachdegree);
 
-                   var startPoint = 0 - eachdegree;
+                   var startPoint = 90 - eachdegree;
                    var originalOrigin = startPoint;
 
                    // Calculate distince
@@ -109,10 +111,6 @@
                    }
                    var distancex = distance(x1, y1, x2, y2);
 
-                   // Set indepentent param
-                   // for (var i = 0; i < ($n_row - outcome); i++) {
-                   //   indepentent.push()
-                   // }
 
                    // Calculate coordinate
                    $outcome_c = 0
@@ -121,6 +119,9 @@
                    var outcome_ref = 0
                    var factor_ref = 0
                    $independent = 0
+
+                   var first_x = 0; var first_y = 0;
+
                    for (var i = 0; i < point; i++) {
                      startPoint = startPoint + eachdegree
                      // startPoint = parseInt(startPoint)
@@ -129,40 +130,26 @@
                      var x = calculatePoint('x', startPoint, radious_x)
                      var y = calculatePoint('y', startPoint, radious_y)
 
-                     // console.log(startPoint + ' -> x => ' + x  + ', y => ' + y);
-
-                     // var x = calculatePoint('x', startPoint, central_radious) + (central_radious * calculateCOS(startPoint))
-                     // var y = calculatePoint('y', startPoint, central_radious) + (central_radious * calculateSIN(startPoint))
-
-
-                     //
+                     // if(i == 0){
+                     //   first_x = x; first_y = y;
+                     // }else if(i == 1){
+                     //   jsonLine.push({ "x1": first_x, "y1": first_y, "x2": x, "y2": y, "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" })
+                     // }else if(i == point - 1){
+                     //   jsonLine.push({ "x1": prev_x, "y1": prev_y, "x2": x, "y2": y, "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" })
+                     // }else{
+                     //   jsonLine.push({ "x1": prev_x, "y1": prev_y, "x2": x, "y2": y, "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" })
+                     // }
 
                      if($outcome_c == 0){
-                     //   console.log('Start point');
-                     //   console.log('x => ' + x + ', y => ' + y);
-                     //   x = x + central_radious
-                     //
-                     //   // var x0 = ((distancex/2) * calculateCOS(startPoint) + x) + (central_x - 50) - (distancex)
-                     //   // var y0 = ((distancex/2) * calculateSIN(startPoint) + y) + (central_x - 50)
-                     //
-                     //   // console.log('New x => ' + x0 + ', y => ' + y0);
-                     //   // console.log('x => ' + calculatePoint('x', startPoint, radious) + ' y => ' + calculatePoint('y', startPoint, radious));
-                       param_label.push(depentent[outcome_ref])
-                       console.log(depentent[outcome_ref]);
-                       outcome_ref++
-                       jsonCircle.push({ "x_axis": x, "y_axis": y, "radius": (distancex/2), "color" : "rgb(0, 148, 255)", "degree" : startPoint})
+                        param_label.push(depentent[outcome_ref])
+                        console.log("Outcome " + depentent[outcome_ref]);
+                        jsonCircle.push({ "x_axis": x, "y_axis": y, "radius": (distancex/2), "color" : "rgb(0, 148, 255)", "degree" : startPoint, "param" : depentent[outcome_ref]})
+                        outcome_ref++
                      }else{
-                     //   console.log('Indicator point');
-                     //   console.log('x => ' + x + ', y => ' + y);
-                     //   // var x0 = (distancex/2) * calculateCOS(startPoint)  + x
-                     //   // var y0 = (distancex/2) * calculateSIN(startPoint)  + y
-                     //   // var x0 = (distancex/2) * calculateCOS(startPoint) + x + distancex
-                     //   // var y0 = (distancex/2) * calculateSIN(startPoint) + y + distancex
-                     //   // jsonCircle.push({ "x_axis": calculatePoint('x', startPoint, radious) + radious, "y_axis": calculatePoint('y', startPoint, radious) + radious, "radius": 30, "color" : "rgb(207, 207, 207)" })
                         if(sig_param[$independent] == 1){
-                          jsonCircle.push({ "x_axis": x , "y_axis": y , "radius": (distancex/3), "color" : "rgb(255, 99, 0)", "degree" : startPoint })
+                          jsonCircle.push({ "x_axis": x , "y_axis": y , "radius": (distancex/3), "color" : "rgb(255, 99, 0)", "degree" : startPoint, "param" : indepentent[factor_ref] })
                         }else{
-                          jsonCircle.push({ "x_axis": x , "y_axis": y , "radius": (distancex/3), "color" : "rgb(240, 240, 240)", "degree" : startPoint })
+                          jsonCircle.push({ "x_axis": x , "y_axis": y , "radius": (distancex/3), "color" : "rgb(240, 240, 240)", "degree" : startPoint, "param" : indepentent[factor_ref] })
                         }
                         param_label.push(indepentent[factor_ref])
                         factor_ref++
@@ -178,47 +165,13 @@
 
                    }
                    // console.log(jsonCircle);
-                   displayVisualize(jsonCircle, param_label, eachdegree)
+                   displayVisualize(jsonCircle, param_label, eachdegree, snap)
                  }
                })
 
 
     // ------------------------
 
-    // var point = 22
-    // var outcome = 3
-    // var radious = 200
-    // var point_outcome = parseInt(point/outcome)
-    // var eachdegree = 360/point;
-    // var startPoint = 0 - eachdegree;
-    //
-    // var x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-    // $outcome_c = 0;
-    // for (var i = 0; i < point; i++) {
-    //   startPoint = startPoint + eachdegree
-    //   startPoint = parseInt(startPoint)
-    //   if($outcome_c == 0){
-    //     console.log("Print outcome");
-    //   }
-    //   console.log('Degree ' + startPoint + ' => ' + calculatePoint('x', startPoint, radious) + ', ' + calculatePoint('y', startPoint, radious));
-    //   if($outcome_c == point_outcome){
-    //     $outcome_c = 0;
-    //   }else{
-    //     $outcome_c ++
-    //   }
-    //
-    //   if((i == 0) || (i == 1)){
-    //     if(i == 0){
-    //       x1 = calculatePoint('x', startPoint, radious)
-    //       x1 = calculatePoint('y', startPoint, radious)
-    //     }else{
-    //       x2 = calculatePoint('x', startPoint, radious)
-    //       x2 = calculatePoint('y', startPoint, radious)
-    //     }
-    //   }
-    //
-      // console.log("Distance = " + distance(x1, y1, x2, y2));
-    // }
 
     function calculateCOS(degree){
       degree = parseInt(degree)
@@ -268,12 +221,52 @@
     	return d;
     }
 
-    function displayVisualize(data, text_param, ed){
+    function displayVisualize(data, text_param, ed, snap){
 
       // console.log(ed);
       var width = 600
       var height = 600
-      var origin = { x: 300, y: 300 };
+      var origin = { x: 0, y: 0 };
+      var jsonLine = [];
+
+      console.log(data);
+
+      $index = 0
+      snap.forEach(i=>{
+        if($index >= 4){
+          i.forEach((k, x) => {
+            var jj = i[0]
+            if(x == 2){
+              var arr0 = data.filter(d => d.param == "CESAREAN");
+              var arr1 = data.filter(d => d.param == jj);
+              if(parseInt(k) >= 1){
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2":( arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)", "Compair of" : "CESAREAN and " + i[0] })
+              }else{
+                // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "CESAREAN and " + i[0] })
+              }
+            }else if(x == 3){
+              var arr0 = data.filter(d => d.param == "PRETERM");
+              var arr1 = data.filter(d => d.param == jj);
+              if(parseInt(k) >= 1){
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)", "Compair of" : "PRETERM and " + i[0] })
+              }else{
+                // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "PRETERM and " + i[0] })
+              }
+            }else if(x == 4){
+              var arr0 = data.filter(d => d.param == "LBW");
+              var arr1 = data.filter(d => d.param == jj);
+              if(parseInt(k) >= 1){
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)", "Compair of" : "LBW and " + i[0] })
+              }else{
+                // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "LBW and " + i[0] })
+              }
+            }
+          })
+        }
+        $index++
+      })
+
+
       //
       // var jsonCircles = [
       //   { "x_axis": 200 + (width/2), "y_axis": 0 + (height/2), "radius": 38, "color" : "rgb(0, 148, 255)" },
@@ -288,119 +281,66 @@
       //   { "x_axis": 161.80339887498945 + (width/2), "y_axis": -117.55705045849467 + (height/2), "radius": 20, "color" : "red"},
       // ];
 
-        // console.log(jsonCirclesx);
-      //
-      //   var jsonLine = [
-      //     { "x1": 200 + (width/2), "y1": 0 + (height/2), "x2": 161.80339887498948  + (height/2) , "y2":117.55705045849463 + (height/2), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" },
-      //     { "x1": 161.80339887498948  + (height/2), "y1": 117.55705045849463 + (height/2), "x2":  61.80339887498949 + (width/2), "y2": 190.2113032590307 + (height/2), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" }
-      //   ];
-      //
-      //
-      //
         var svgContainer = d3.select("svg")
-
-        // for (var i = 0; i < text_param.length; i++) {
-        //   var textLabels = svgContainer.append("text")
-        //                     .attr("x", ((40 * calculateCOS(data[i].degree)) + data[i].x_axis) + width/2 )
-        //                     .attr("y", ((40 * calculateSIN(data[i].degree)) + data[i].y_axis) + height/2 )
-        //                     .text(text_param[i])
-        //                     .attr("transform", "rotate(10)")
-        //                     .attr("font-family", "sans-serif")
-        //                     .attr("font-size", "20px")
-        //                     .attr("fill", "red");
-        // }
-
+                          .attr("width", width)
+                          .attr("height", height)
 
         var group = svgContainer.append("g")
-                    // .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
+                    .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
 
                     // ((distancex/2) * calculateCOS(startPoint) + x) + (central_x - 50) - (distancex)
         var circleRadious = width/2 - (data[0].radius * 3.8)
          group.append("circle")
-              .attr("r", circleRadious)
-              .attr("transform", "translate(" + (width/2) + ", " + (height/2) + ")")
-              .style("fill", "none")
-              .style("stroke", "rgb(232, 232, 232)");
+                    .attr("r", circleRadious)
+                    .style("fill", "none")
+                    .style("stroke", "rgb(236, 236, 236)");
         $c = 0
 
         var text_ele = []
 
-        data.forEach(i=>{
+        jsonLine.forEach(i=>{
+          var line = group.append("line")
+                    .attr("x1", i.x1)
+                    .attr("y1", i.y1)
+                    .attr("x2", i.x2)
+                    .attr("y2", i.y2)
+                    .attr("stroke-width", i.stroke_width)
+                    .attr("stroke", i.stroke);
+          if(i.stroke_width == 1){
+            line.style("stroke-dasharray","5,5")
+          }
 
         })
 
         data.forEach(i=>{
 
-
-
-          // var subgroup = group.append("g")
-          //               .attr("x", ((40 * calculateCOS(i.degree)) + i.x_axis) + width/2 )
-          //               .attr("y", ((40 * calculateSIN(i.degree)) + i.y_axis) + height/2 )
-          //               .text(text_param[$c])
-          //               .attr("transform", "rotate(10)")
-          //               .attr("font-family", "sans-serif")
-          //               .attr("font-size", "20px")
-          //               .attr("fill", "red");
-
-          // var textLabels = svgContainer.append("text")
-          //                   .attr("x", ((40 * calculateCOS(i.degree)) + i.x_axis) + width/2 )
-          //                   .attr("y", ((40 * calculateSIN(i.degree)) + i.y_axis) + height/2 )
-          //                   .text(text_param[$c])
-          //                   .attr("transform", "rotate(10)")
-          //                   .attr("font-family", "sans-serif")
-          //                   .attr("font-size", "20px")
-          //                   .attr("fill", "red");
-
-          var circles = group.append("circle")
-                                    .attr("cx", i.x_axis + width/2 )
-                                    .attr("cy", i.y_axis  + height/2 )
-                                    .attr("r", i.radius)
-                                    .style("fill", i.color);
-
-                                    //Add the SVG Text Element to the svgContainer
           var x = i.degree
           var rad = i.radius
           var nx = (40 * calculateCOS(i.degree) + i.x_axis) + width/2
           var ny = (40 * calculateSIN(i.degree) + i.y_axis) + height/2
 
-          // console.log(x);
-          console.log(text_param[$c] + ' ' + x);
+          dial = text_param;
 
-          if((x >= 90) && (x <= 270)){
+          // Position text at X=radius, Y=0 and rotate around the origin to get final position
+          group.selectAll("text")
+            .data(dial)
+            .enter()
+            .append("text")
+            .attr("x", circleRadious + 40)
+            // tweak digit Y position a little to ensure it's centred at desired position
+            .attr("y", "0.1em")
+            .text(function(d, i) { return d; })
+            .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / dial.length) * i)) + ")"; });
 
-            // var thisWidth = text_param[$c].getComputedTextLength()
-            // console.log(thisWidth);
-
-            // console.log(i.degree);
-            if((x > 180) && (x < 270)){
-              group.append("text")
-                    .attr("dx", ((40 * calculateCOS(i.degree) + i.x_axis) + width/2) - 20)
-                    .attr("dy", ((40 * calculateSIN(i.degree) + i.y_axis) + height/2))
-                    .text(text_param[$c])
-            }else{
-              group.append("text")
-                    .attr("dx", ((40 * calculateCOS(i.degree) + i.x_axis) + width/2) - 20)
-                    .attr("dy", ((40 * calculateSIN(i.degree) + i.y_axis) + height/2) + 20)
-                    .text(text_param[$c])
-            }
-
-          }else{
-            group.append("text")
-                  .attr("dx", ((40 * calculateCOS(i.degree) + i.x_axis) + width/2))
-                  .attr("dy", ((40 * calculateSIN(i.degree) + i.y_axis) + height/2))
-                  .text(text_param[$c])
-          }
-
+          group.append("circle")
+                      .attr("cx", i.x_axis * -1 )
+                      .attr("cy", i.y_axis * -1 )
+                      .attr("r", i.radius)
+                      .style("fill", i.color);
 
 
           $c++;
         })
-
-        // text_ele.forEach(i=>{
-        //   i.attr("transform", "rotate(20)")
-        // })
-
-        // var container = svg.append("g")
 
 
         var curAngle = 0;
@@ -413,7 +353,7 @@
                         x: d3.event.y,
                         y: d3.event.x
                     };
-                    group.attr("transform","rotate(" + r.x + "," + origin.x + "," + origin.y + ")" );
+                    svgContainer.attr("transform","rotate(" + r.x + "," + (origin.x) + "," + (origin.y) + ")" );
                 };
     }
 
