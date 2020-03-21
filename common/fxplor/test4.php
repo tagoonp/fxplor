@@ -288,7 +288,6 @@
         var group = svgContainer.append("g")
                     .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
 
-                    // ((distancex/2) * calculateCOS(startPoint) + x) + (central_x - 50) - (distancex)
         var circleRadious = width/2 - (data[0].radius * 3.8)
          group.append("circle")
                     .attr("r", circleRadious)
@@ -356,85 +355,6 @@
                     svgContainer.attr("transform","rotate(" + r.x + "," + (origin.x) + "," + (origin.y) + ")" );
                 };
     }
-
-  </script>
-
-  <script type="text/javascript">
-
-  // var width = 600
-  // var height = 600
-  // var origin = {
-  //               x: 300,
-  //               y: 300
-  //           };
-  // //
-  //   var jsonCirclesx = [
-  //     { "x_axis": 200 + (width/2), "y_axis": 0 + (height/2), "radius": 38, "color" : "rgb(0, 148, 255)" },
-  //     { "x_axis": 161.80339887498948 + (width/2), "y_axis": 117.55705045849463 + (height/2), "radius": 20, "color" : "rgb(255, 107, 0)"},
-  //     { "x_axis": 61.80339887498949 + (width/2), "y_axis": 190.2113032590307 + (height/2), "radius": 20, "color" : "rgb(207, 207, 207)"},
-  //     { "x_axis": -61.80339887498947 + (width/2), "y_axis": 190.21130325903073 + (height/2), "radius": 20, "color" : "rgb(207, 207, 207)"},
-  //     { "x_axis": -161.80339887498945 + (width/2), "y_axis": 117.55705045849464 + (height/2)  , "radius": 30, "color" : "rgb(0, 148, 255)"},
-  //     { "x_axis": -200 + (width/2), "y_axis": 0 + (height/2), "radius": 20, "color" : "red"},
-  //     { "x_axis": -161.80339887498948 + (width/2), "y_axis": -117.5570504584946 + (height/2), "radius": 20, "color" : "red"},
-  //     { "x_axis": -61.80339887498951 + (width/2), "y_axis": -190.2113032590307 + (height/2), "radius": 20, "color" : "rgb(207, 207, 207)"},
-  //     { "x_axis": 61.80339887498945 + (width/2), "y_axis": -190.21130325903073 + (height/2), "radius": 30, "color" : "rgb(0, 148, 255)"},
-  //     { "x_axis": 161.80339887498945 + (width/2), "y_axis": -117.55705045849467 + (height/2), "radius": 20, "color" : "red"},
-  //   ];
-  //
-  //   // console.log(jsonCirclesx);
-  // //
-  // //   var jsonLine = [
-  // //     { "x1": 200 + (width/2), "y1": 0 + (height/2), "x2": 161.80339887498948  + (height/2) , "y2":117.55705045849463 + (height/2), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" },
-  // //     { "x1": 161.80339887498948  + (height/2), "y1": 117.55705045849463 + (height/2), "x2":  61.80339887498949 + (width/2), "y2": 190.2113032590307 + (height/2), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" }
-  // //   ];
-  // //
-  // //
-  // //
-  //   var svgContainer = d3.select("svg")
-  //   var group = svgContainer.append("g")
-  // //
-  //   console.log(jsonCircle);
-  //   var x = JSON.stringify(jsonCircle)
-  //   console.log(x);
-  //
-  //   x.forEach(i=>{
-  //     console.log(i);
-  //     var circles = group.append("circle")
-  //                               .attr("cx", i.x_axis)
-  //                               .attr("cy", i.y_axis)
-  //                               .attr("r", i.radius)
-  //                               .style("fill", i.color);
-  //   })
-  //
-  // //
-  // //   jsonLine.forEach(i=>{
-  // //     var line = group.append("line")
-  // //                               .attr("x1", i.x1)
-  // //                               .attr("y1", i.y1)
-  // //                               .attr("x2", i.x2)
-  // //                               .attr("y2", i.y2)
-  // //                               .attr("stroke-width", i.stroke_width)
-  // //                               .attr("stroke", i.stroke);
-  // //   })
-  // //
-  // //
-  // //
-  // //   var curAngle = 0;
-  // //   var interval = null;
-  // //
-  // //   group.call(d3.drag().on('drag', dragged));
-  // //
-  // //   function dragged() {
-  // //               var r = {
-  // //                   x: d3.event.y,
-  // //                   y: d3.event.x
-  // //               };
-  // //               group.attr("transform","rotate(" + r.x + "," + origin.x + "," + origin.y + ")" );
-  // //           };
-  // //
-  // //
-  // //
-
 
   </script>
 </html>
