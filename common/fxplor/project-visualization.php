@@ -25,327 +25,105 @@
   circle.node {
     stroke: #fff;
     stroke-width: 3px;
-}
+  }
 
-line.link {
-    stroke-width: 2px;
-    stroke: #999;
-    stroke-opacity: 0.6;
-}
+  line.link {
+      stroke-width: 2px;
+      stroke: #999;
+      stroke-opacity: 0.6;
+  }
 
-marker#arrow {
-    stroke: #999;
-    fill: #999;
-}
+  marker#arrow {
+      stroke: #999;
+      fill: #999;
+  }
+
+  html, body{
+    background: #fff !important;
+    overflow-y:hidden;
+    height:100%;
+  }
   </style>
 </head>
 
-<body>
-  <div id="app">
-    <div class="main-wrapper main-wrapper-1">
-      <div class="navbar-bg"></div>
-      <nav class="navbar navbar-expand-lg main-navbar">
-        <div class="form-inline mr-auto">
-          <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg" id="btnSidebar"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-          </ul>
-          <div class="search-element">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
-            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
-            <div class="search-backdrop"></div>
-            <div class="search-result">
-              <div class="search-header">
-                Histories
-              </div>
-              <div class="search-item">
-                <a href="#">How to hack NASA using CSS</a>
-                <a href="#" class="search-close"><i class="fas fa-times"></i></a>
-              </div>
-              <div class="search-item">
-                <a href="#">Kodinger.com</a>
-                <a href="#" class="search-close"><i class="fas fa-times"></i></a>
-              </div>
-              <div class="search-item">
-                <a href="#">#Stisla</a>
-                <a href="#" class="search-close"><i class="fas fa-times"></i></a>
-              </div>
-              <div class="search-header">
-                Result
-              </div>
-              <div class="search-item">
-                <a href="#">
-                  <img class="mr-3 rounded" width="30" src="../../assets/img/products/product-3-50.png" alt="product">
-                  oPhone S9 Limited Edition
-                </a>
-              </div>
-              <div class="search-item">
-                <a href="#">
-                  <img class="mr-3 rounded" width="30" src="../../assets/img/products/product-2-50.png" alt="product">
-                  Drone X2 New Gen-7
-                </a>
-              </div>
-              <div class="search-item">
-                <a href="#">
-                  <img class="mr-3 rounded" width="30" src="../../assets/img/products/product-1-50.png" alt="product">
-                  Headphone Blitz
-                </a>
-              </div>
-              <div class="search-header">
-                Projects
-              </div>
-              <div class="search-item">
-                <a href="#">
-                  <div class="search-icon bg-danger text-white mr-3">
-                    <i class="fas fa-code"></i>
-                  </div>
-                  Stisla Admin Template
-                </a>
-              </div>
-              <div class="search-item">
-                <a href="#">
-                  <div class="search-icon bg-primary text-white mr-3">
-                    <i class="fas fa-laptop"></i>
-                  </div>
-                  Create a new Homepage Design
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <ul class="navbar-nav navbar-right">
-          <li class="dropdown dropdown-list-toggle  dn"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-              <div class="dropdown-header">Messages
-                <div class="float-right">
-                  <a href="#">Mark All As Read</a>
-                </div>
-              </div>
-              <div class="dropdown-list-content dropdown-list-message">
-                <a href="#" class="dropdown-item dropdown-item-unread">
-                  <div class="dropdown-item-avatar">
-                    <img alt="image" src="../../assets/img/avatar/avatar-1.png" class="rounded-circle">
-                    <div class="is-online"></div>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Kusnaedi</b>
-                    <p>Hello, Bro!</p>
-                    <div class="time">10 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item dropdown-item-unread">
-                  <div class="dropdown-item-avatar">
-                    <img alt="image" src="../../assets/img/avatar/avatar-2.png" class="rounded-circle">
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Dedik Sugiharto</b>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                    <div class="time">12 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item dropdown-item-unread">
-                  <div class="dropdown-item-avatar">
-                    <img alt="image" src="../../assets/img/avatar/avatar-3.png" class="rounded-circle">
-                    <div class="is-online"></div>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Agung Ardiansyah</b>
-                    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <div class="time">12 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-avatar">
-                    <img alt="image" src="../../assets/img/avatar/avatar-4.png" class="rounded-circle">
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Ardian Rahardiansyah</b>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
-                    <div class="time">16 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-avatar">
-                    <img alt="image" src="../../assets/img/avatar/avatar-5.png" class="rounded-circle">
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Alfa Zulkarnain</b>
-                    <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                    <div class="time">Yesterday</div>
-                  </div>
-                </a>
-              </div>
-              <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-              </div>
-            </div>
-          </li>
-          <li class="dropdown dropdown-list-toggle dn"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-              <div class="dropdown-header">Notifications
-                <div class="float-right">
-                  <a href="#">Mark All As Read</a>
-                </div>
-              </div>
-              <div class="dropdown-list-content dropdown-list-icons">
-                <a href="#" class="dropdown-item dropdown-item-unread">
-                  <div class="dropdown-item-icon bg-primary text-white">
-                    <i class="fas fa-code"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    Template update is available now!
-                    <div class="time text-primary">2 Min Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-info text-white">
-                    <i class="far fa-user"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-                    <div class="time">10 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-success text-white">
-                    <i class="fas fa-check"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                    <div class="time">12 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-danger text-white">
-                    <i class="fas fa-exclamation-triangle"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    Low disk space. Let's clean it!
-                    <div class="time">17 Hours Ago</div>
-                  </div>
-                </a>
-                <a href="#" class="dropdown-item">
-                  <div class="dropdown-item-icon bg-info text-white">
-                    <i class="fas fa-bell"></i>
-                  </div>
-                  <div class="dropdown-item-desc">
-                    Welcome to Stisla template!
-                    <div class="time">Yesterday</div>
-                  </div>
-                </a>
-              </div>
-              <div class="dropdown-footer text-center">
-                <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-              </div>
-            </div>
-          </li>
-          <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="../../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, <span class="userFullname"><i class="fas fa-sync fa-spin"></i></span></div></a>
-            <div class="dropdown-menu dropdown-menu-right">
-              <div class="dropdown-title">Logged in 5 min ago</div>
-              <a href="features-profile.html" class="dropdown-item has-icon">
-                <i class="far fa-user"></i> Profile
-              </a>
-              <a href="features-activities.html" class="dropdown-item has-icon">
-                <i class="fas fa-bolt"></i> Activities
-              </a>
-              <a href="features-settings.html" class="dropdown-item has-icon">
-                <i class="fas fa-cog"></i> Settings
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#" class="dropdown-item has-icon text-danger">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>
-            </div>
-          </li>
-        </ul>
-      </nav>
-      <div class="main-sidebar sidebar-style-2">
-        <aside id="sidebar-wrapper">
-          <div class="sidebar-brand">
-            <a href="../index">Fxplor</a>
-          </div>
-          <div class="sidebar-brand sidebar-brand-sm">
-            <a href="../index">Fx</a>
-          </div>
-          <ul class="sidebar-menu">
-              <li class="menu-header">Dashboard</li>
-              <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-home"></i><span>Dashboard</span></a>
-              </li>
-              <li class="menu-header">Products</li>
-              <li class="nav-item dropdown active">
-                <a href="#" class="nav-link has-dropdown active" data-toggle="dropdown"><img src="../../img/fxplor-logo-4-active.png" alt="" width="30"> <span class="ml-3">Fxplor</span></a>
-                <ul class="dropdown-menu">
-                  <li><a class="nav-link" href="../fxplor/project">Projects</a></li>
-                  <li class="active"><a class="nav-link" href="../fxplor/visulization">Visulization</a></li>
-                  <li><a class="nav-link" href="../fxplor/sharing">Sharing</a></li>
-                </ul>
-              </li>
-            </ul>
+<body style="background: #fff;">
 
-            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="Javascript:openDoc()" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-              </a>
-            </div>
-        </aside>
-      </div>
-
-      <!-- Main Content -->
-      <div class="main-content">
-        <section class="section">
-          <div class="section-header">
-            <h1>Visualization</h1>
-          </div>
-
-          <div class="section-body">
-            <div class="row">
-              <div class="col-12 pb-2">
-                <button type="button" name="button" class="btn btn-primary- btn-sm bsdn" onclick="window.location='visulization'"><span class="bg-primary p-1 text-white"><i class="fas fa-chevron-left"></i></span> <span class="text-primary">Back to project shared with me</span></button>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 col-sm-3">
-                <h6 class="mt-3">Variable list</h6>
-                <div class="" id="paramList" style="max-height: 500px; overflow-x: hidden;">
-
-                </div>
-              </div>
-              <div class="col-12 col-sm-9">
-                <h6 class="mt-3">Visualization</h6>
-                <div class="card mt-0">
-                  <div class="card-body">
-                    <!-- <svg id="visualZone" style="height: 500px;"> -->
-                      <!-- <div class="text-center" style="padding-top: 240px;">
-                        No visualization running.
-                      </div> -->
-                    <!-- </svg> -->
-                    <svg id="visualZone" width="800" height="600">
-                      <defs>
-                        <marker id="arrow" viewbox="0 -5 10 10" refX="18" refY="0" markerWidth="6" markerHeight="6" orient="auto">
-                         <path d="M0,-5L10,0L0,5Z">
-                        </marker>
-                      </defs>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-      <footer class="main-footer">
-        <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
-        </div>
-        <div class="footer-right">
-          2.3.0
-        </div>
-      </footer>
+  <nav class="navbar navbar-dark fixed-top" style="left: 0px; right: 0px; border: solid; border-width: 0px 0px 1px 0px; border-color: rgb(237, 237, 237); background: rgb(255, 255, 255);">
+    <a class="navbar-brand text-dark" href="#"><span class="text-danger">FXPLOR</span> Visualization</a>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
     </div>
+  </nav>
+
+  <div class="container-fluid" style="background: #fff;">
+    <div class="row" style="margin-top: 70px; background: #fff;">
+      <div class="col-12 pt-3">
+        <div class="row">
+          <div class="col-12 col-sm-12 pb-2">
+            <button type="button" name="button" class="btn btn-danger btn-sm bsdn" onclick="window.location='project'"><i class="fas fa-chevron-left"></i> Back to FXPLOR</button>
+            <button type="button" name="button" class="btn btn-primary btn-sm bsdn" onclick="window.location='project'"><i class="fas fa-bars"></i> History</button>
+            <button type="button" name="button" class="btn btn-primary btn-sm bsdn" onclick="window.location='project'"><i class="fas fa-play"></i> Generate visualization</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-sm-3 col-md-3 col-lg-4 col-xl-6 pr-0" id="tableData">
+            <h6 class="mt-3">Independent variable list</h6>
+            <div class="row">
+              <div class="col-12">
+                <div class="customNiceScroll p-0" style="height: 200px; overflow: visible; border: solid; border-width: 0px 1px 0px 0px; border-color: rgb(232, 232, 232);">
+                  <div id="lraList">
+                    <table class="table table-striped table-sm table-bordered">
+                      <thead id="lraListHeader" style="background: rgb(0, 133, 255);">
+                      </thead>
+                      <thead id="lraListBody">
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-5 col-md-5 col-lg-8 col-xl-6">
+            <div class="card mt-0" style="box-shadow: none;">
+              <div class="card-body text-center" id="vizCard" style="height: 600px; box-shadow: none;">
+                <svg width="100%" height="700"></svg>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dataPanal" style="bottom: 0px; left: 0px; width: 400px; position: fixed; background: rgb(228, 228, 228); height: 260px; background: rgb(245, 245, 245);" >
+    <div class="p-2" style="background: #fff;">
+      <h6 class="mt-3">Output console</h6>
+    </div>
+    <div class="p-3" style="font-size: 0.9em;">
+      Null deviance: 1501.5 on 1532 degrees of freedom<br>
+     Residual deviance: 1438.1 on 1521 degrees of freedom<br>
+     AIC: 1462.1<br>
+     Number of Fisher Scoring iterations: 4<br>
+    </div>
+  </div>
+
 
   <!-- General JS Scripts -->
   <script type="text/javascript" src="../../node_modules/jquery/dist/jquery.min.js" ></script>
@@ -357,7 +135,7 @@ marker#arrow {
   <script type="text/javascript" src="../../node_modules/preload.js/dist/js/preload.js"></script>
   <script type="text/javascript" src="../../node_modules/dropzone/dist/min/dropzone.min.js"></script>
   <!-- <script type="text/javascript" src="../../node_modules/d3-master/d3/dist/d3.js"></script> -->
-  <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
+  <script src="https://d3js.org/d3.v5.js"></script>
 
   <script type="text/javascript" src="../../assets/js/stisla.js"></script>
   <script type="text/javascript" src="../../assets/js/scripts.js"></script>
@@ -368,53 +146,414 @@ marker#arrow {
   <script type="text/javascript" src="../../assets/custom/js/project.js"></script>
 
   <script type="text/javascript">
-  var width = 800;
-  var height = 600;
 
-  var color = d3.scale.category10();
+    // preload.hide()
+    // project.visualize()
+    $('.customNiceScroll').height(($('body').height() - 260 - 200) + 'px' )
+    $('.dataPanal').width($('#tableData').width() + 20)
+    var x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+    var jsonCircle = [];
 
-  var force = d3.layout.force()
-      .charge(-180)
-      .linkDistance(70)
-      .size([width, height]);
+    $displayWidth = $('#vizCard').width()
+    $displayheight = $('#vizCard').height()
 
-  var svg = d3.select("#visualZone");
+    var margin = {top: 50, right: 50, bottom: 50, left: 50}
+    var width = 400
+    var height = 400
 
-  d3.json("cloud.json", function(json) {
-      force
-          .nodes(json.nodes)
-          .links(json.links)
-          .start();
+    var jxr = $.post(conf.api + 'project_visualize?stage=get_input_data', function(){}, 'json')
+               .always(function(snap){
+                 console.log(snap);
+                 if(fnc.json_exist(snap)){
+                   $n_row = snap.length
+                   var point = $n_row - 4
+                   var outcome = snap[0].length - 2
+                   var radious_x = width/2 - 50
+                   var radious_y = height/2 - 50
+                   var central_radious = width/2 - 60
+                   var point_outcome = parseInt(point/outcome)
+                   var eachdegree = (360/point);
 
-      var links = svg.append("g").selectAll("line.link")
-          .data(force.links())
-          .enter().append("line")
-          .attr("class", "link")
-          .attr("marker-end", "url(#arrow)");
+                   var sig_param = []
+                   var sig_param_value = []
+                   var text_param = []
+                   var label_param = []
+                   var indepentent = []
+                   var depentent = []
+                   var array_link = []
+                   // Extract data for param only
+                   for (var i = 4; i < snap.length ; i++) {
+                     text_param.push(snap[i][0])
+                     label_param.push(snap[i][1])
 
-      var nodes = svg.selectAll("circle.node")
-          .data(force.nodes())
-          .enter().append("circle")
-          .attr("class", "node")
-          .attr("r", 8)
-          .style("fill", function(d) { return color(d.group); })
-          .call(force.drag);
+                     if(i < (snap.length - outcome)){
+                       indepentent.push(snap[i][0])
+                     }else{
+                       depentent.push(snap[i][0])
+                     }
 
-      // nodes.append("title")
-      //     .text(function(d) { return d.name; });
-      //
-      // force.on("tick", function() {
-      //   links.attr("x1", function(d) { return d.source.x; })
-      //       .attr("y1", function(d) { return d.source.y; })
-      //       .attr("x2", function(d) { return d.target.x; })
-      //       .attr("y2", function(d) { return d.target.y; });
-      //
-      //   nodes.attr("cx", function(d) { return d.x; })
-      //       .attr("cy", function(d) { return d.y; });
-      // });
+                     if((parseInt(snap[i][2]) >= 1) || (parseInt(snap[i][3]) >= 1) || (parseInt(snap[i][4]) >= 1)){
+                       sig_param.push(1)
+                       // sig_param_value.push(0)
+                     }else{
+                       sig_param.push(0)
+                       // sig_param_value.push(0)
+                     }
+                   }
+
+                   var startPoint = 90 - eachdegree;
+                   var originalOrigin = startPoint;
+
+                   // Calculate distince
+                   for (var i = 0; i < point; i++) {
+                     startPoint = startPoint + eachdegree
+                     startPoint = parseInt(startPoint)
+                     if((i == 0) || (i == 1)){
+                       if(i == 0){
+                         x1 = calculatePoint('x', startPoint, central_radious)
+                         y1 = calculatePoint('y', startPoint, central_radious)
+                       }else{
+                         x2 = calculatePoint('x', startPoint, central_radious)
+                         y2 = calculatePoint('y', startPoint, central_radious)
+                       }
+                     }
+                   }
+                   var distancex = distance(x1, y1, x2, y2);
 
 
-  });
+                   // Calculate coordinate
+                   $outcome_c = 0
+                   startPoint = originalOrigin
+                   var param_label = [];
+                   var outcome_ref = 0
+                   var factor_ref = 0
+                   $independent = 0
+
+                   var first_x = 0; var first_y = 0;
+
+                   for (var i = 0; i < point; i++) {
+                     startPoint = startPoint + eachdegree
+                     var x = calculatePoint('x', startPoint, radious_x)
+                     var y = calculatePoint('y', startPoint, radious_y)
+
+                     if($outcome_c == 0){
+                        param_label.push(depentent[outcome_ref])
+                        console.log("Outcome " + depentent[outcome_ref]);
+                        if(i == 0){
+                          jsonCircle.push({ "x_axis": x, "y_axis": y, "radius": (distancex/2) + ((distancex/2) * 0.4), "color" : "rgb(0, 148, 255)", "degree" : startPoint, "param" : depentent[outcome_ref]})
+                        }else{
+                          jsonCircle.push({ "x_axis": x, "y_axis": y, "radius": (distancex/2.2), "color" : "rgb(0, 148, 255)", "degree" : startPoint, "param" : depentent[outcome_ref]})
+                        }
+                        outcome_ref++
+                     }else{
+                        if(sig_param[$independent] == 1){
+                          jsonCircle.push({ "x_axis": x , "y_axis": y , "radius": (distancex/3.5), "color" : "rgb(255, 99, 0)", "degree" : startPoint, "param" : indepentent[factor_ref] })
+                        }else{
+                          jsonCircle.push({ "x_axis": x , "y_axis": y , "radius": (distancex/3.5), "color" : "rgb(230, 230, 230)", "degree" : startPoint, "param" : indepentent[factor_ref] })
+                        }
+                        param_label.push(indepentent[factor_ref])
+                        factor_ref++
+                        $independent++;
+                     }
+                     if($outcome_c == point_outcome){
+                       $outcome_c = 0;
+                     }else{
+                       $outcome_c ++
+                     }
+
+                     // console.log(param_label);
+
+                   }
+                   // console.log(jsonCircle);
+                   displayVisualize(jsonCircle, param_label, eachdegree, snap)
+
+                   $c = 0
+                   snap.forEach(i=>{
+                     if($c == 0){
+                       $('#lraListHeader').empty()
+                       $('#lraListHeader').append('<tr style="background: rgb(1, 122, 249) !important;">')
+                       i.forEach(k => {
+                         $('#lraListHeader').append('<th class="text-white">' + k + '</th>')
+                       })
+                       $('#lraListHeader').append('</tr>')
+
+                       $('#lraListHeader').append('<tr style="background: #fff;"><td colspan="5"><div class="custom-control custom-checkbox">' +
+                        '<input type="checkbox" class="custom-control-input" id="customCheck1" checked>' +
+                        '<label class="custom-control-label" for="customCheck1"><strong>Check all</strong></label>' +
+                      '</div></td></tr>')
+                     }else{
+                       $('#lraListBody').append('<tr>')
+                       $v = 0
+                       i.forEach(k => {
+                         if($v == 0){
+                           if($c > 3){
+                             $('#lraListBody').append('<td><div class="custom-control custom-checkbox">' +
+                              '<input type="checkbox" class="custom-control-input" id="customCheck1" checked>' +
+                              '<label class="custom-control-label" for="customCheck1">' + k + '</label>' +
+                            '</div></td>')
+                          }else{
+                              $('#lraListBody').append('<td><strong>' + k + '</strong></td>')
+                          }
+
+                          }else{
+                            $('#lraListBody').append('<td>' + k + '</td>')
+                          }
+                          $v++;
+                       })
+                       $('#lraListBody').append('</tr>')
+                     }
+
+
+
+                     $c++;
+                   })
+                 }
+               })
+
+
+    // ------------------------
+
+
+    function calculateCOS(degree){
+      degree = parseInt(degree)
+      if(degree == 0){ return 1}
+      else if(degree == 90){ return 0}
+      else if(degree == 180){ return -1}
+      else if(degree == 270){ return 0}
+      else{
+        return Math.cos(((degree) * Math.PI)/180)
+      }
+    }
+
+    function calculateSIN(degree){
+      degree = parseInt(degree)
+      if(degree == 0){ return 0}
+      else if(degree == 90){ return 1}
+      else if(degree == 180){ return 0}
+      else if(degree == 270){ return -1}
+      else{
+        return Math.sin(((degree) * Math.PI)/180)
+      }
+    }
+
+    function calculatePoint(side, degree, rad){
+      degree = parseInt(degree)
+      if(side == 'x'){
+        if(degree == 0){ return 1 * rad }
+        else if(degree == 90){ return 0 * rad }
+        else if(degree == 180){ return -1 * rad }
+        else if(degree == 270){ return 0 * rad  }
+        else{
+          return rad * Math.cos(((degree) * Math.PI)/180)
+        }
+      }else{
+        if(degree == 0){ return 0 * rad}
+        else if(degree == 90){ return 1 * rad}
+        else if(degree == 180){ return 0 * rad}
+        else if(degree == 270){ return -1 * rad }
+        else{
+          return rad * Math.sin(((degree) * Math.PI)/180)
+        }
+      }
+    }
+
+    function distance(lat1,lon1,lat2,lon2) {
+      var d = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2))
+    	return d;
+    }
+
+    function getExplorvalue(id){
+      console.log(id);
+    }
+
+    function displayVisualize(data, text_param, ed, snap){
+
+      // console.log(ed);
+      var width = 600
+      var height = 600
+      var origin = { x: 0, y: 0 };
+      var jsonLine = [];
+
+      // console.log(data);
+      // console.log(snap);
+
+      $index = 0
+      snap.forEach(i=>{
+        if($index >= 4){
+          i.forEach((k, x) => {
+            var jj = i[0]
+            $line_width = 3
+            if(x == 2){
+              if(parseInt(i[2]) == 1){
+                $line_width = 9
+              }else if(parseInt(i[2]) == 2){
+                $line_width = 5
+              }
+              var arr0 = data.filter(d => d.param == "CESAREAN");
+              var arr1 = data.filter(d => d.param == jj);
+              if(parseInt(k) >= 1){
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2":( arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": $line_width, "stroke" : "rgb(126, 126, 126)", "Compair of" : "CESAREAN and " + i[0] })
+              }else{
+                // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "CESAREAN and " + i[0] })
+              }
+            }else if(x == 3){
+              if(parseInt(i[2]) == 1){
+                $line_width = 9
+              }else if(parseInt(i[2]) == 2){
+                $line_width = 5
+              }
+              var arr0 = data.filter(d => d.param == "PRETERM");
+              var arr1 = data.filter(d => d.param == jj);
+              if(parseInt(k) >= 1){
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": $line_width, "stroke" : "rgb(126, 126, 126)", "Compair of" : "PRETERM and " + i[0] })
+              }else{
+                // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "PRETERM and " + i[0] })
+              }
+            }else if(x == 4){
+              if(parseInt(i[2]) == 1){
+                $line_width = 9
+              }else if(parseInt(i[2]) == 2){
+                $line_width = 5
+              }
+              var arr0 = data.filter(d => d.param == "LBW");
+              var arr1 = data.filter(d => d.param == jj);
+              if(parseInt(k) >= 1){
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": $line_width, "stroke" : "rgb(126, 126, 126)", "Compair of" : "LBW and " + i[0] })
+              }else{
+                // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "LBW and " + i[0] })
+              }
+            }
+          })
+        }
+        $index++
+      })
+
+      var svgContainer = d3.select("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .style("margin-top", "0px")
+
+      var group = svgContainer.append("g")
+                  .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
+
+      var circleRadious = width/2 - (data[0].radius) - 130
+      var circle = group.append("circle")
+                  .attr("r", circleRadious)
+                  .style("fill", "none")
+                  .style("stroke", "rgb(236, 236, 236)");
+
+      $c = 0
+
+      var text_ele = []
+
+      jsonLine.forEach(i=>{
+        var line = group.append("line")
+                  .attr("x1", i.x1)
+                  .attr("y1", i.y1)
+                  .attr("x2", i.x2)
+                  .attr("y2", i.y2)
+                  .attr("stroke-width", i.stroke_width)
+                  .attr("stroke", i.stroke)
+                  .style("cursor", "pointer")
+                  .on("mouseover", function(){
+                    var c_element = d3.select(this)
+                                      .attr("stroke-width", i.stroke_width * 1.25)
+                                      .attr("stroke", "rgb(36, 36, 36)")
+                  })
+                  .on("mouseout", function(){
+                    var c_element = d3.select(this)
+                                      .attr("stroke-width", i.stroke_width)
+                                      .attr("stroke", i.stroke)
+                  });
+        if(i.stroke_width == 1){
+          line.style("stroke-dasharray","5,5")
+        }
+
+      })
+
+      data.forEach(i=>{
+
+        var x = i.degree
+        var rad = i.radius
+        var nx = (40 * calculateCOS(i.degree) + i.x_axis) + width/2
+        var ny = (40 * calculateSIN(i.degree) + i.y_axis) + height/2
+
+        dial = text_param;
+
+        // Position text at X=radius, Y=0 and rotate around the origin to get final position
+        group.selectAll("text")
+          .data(dial)
+          .enter()
+          .append("text")
+          .attr("x", circleRadious + 40)
+          // tweak digit Y position a little to ensure it's centred at desired position
+          .attr("y", "0.1em")
+          .text(function(d, i) { return d; })
+          .attr("transform", function(d, i) {
+            return "rotate(" + (-90 + ((360 / dial.length) * i)) + ")";
+          });
+
+
+        var param_circle = group.append("circle")
+                    .attr("id", "circle_" + $c )
+                    .attr("cx", i.x_axis * -1 )
+                    .attr("cy", i.y_axis * -1 )
+                    .attr("r", i.radius)
+                    .style("fill", i.color)
+                    .style("cursor", 'pointer')
+                    .on("click", function(){
+                      var c_element = d3.select(this)
+                      getExplorvalue(c_element.attr('id'))
+                    })
+                    .on("mouseover", function(){
+                      var c_element = d3.select(this)
+                                        .attr("r", i.radius * 1.25)
+                    })
+                    .on("mouseout", function(){
+                      var c_element = d3.select(this)
+                                        .attr("r", i.radius)
+                    });
+        $c++;
+      })
+
+      d3.select("#circle_0")
+
+
+
+      var curAngle = 0;
+      var interval = null;
+
+      svgContainer.call(d3.drag().on('drag', dragged));
+
+      function dragged() {
+                  var r = {
+                      x: d3.event.y,
+                      y: d3.event.x
+                  };
+                  svgContainer.attr("transform","rotate(" + r.x + "," + (origin.x) + "," + (origin.y) + ")" );
+              };
+
+      // Create Event Handlers for mouse
+      function handleMouseOver(d, i) {  // Add interactivity
+
+            // Use D3 to select element, change color and size
+            d3.select(this).attr({
+              fill: "orange",
+              // r: radius * 2
+            });
+
+            // Specify where to put label of text
+            svgContainer.append("text").attr({
+               id: "t" + d.x + "-" + d.y + "-" + i,  // Create an id for text so we can select it later for removing on mouseout
+                x: function() { return xScale(d.x) - 30; },
+                y: function() { return yScale(d.y) - 15; }
+            })
+            .text(function() {
+              return [d.x, d.y];  // Value of the text
+            });
+          }
+    }
+
   </script>
 
   <script type="text/javascript">
@@ -427,6 +566,8 @@ marker#arrow {
     $(document).ready(function(){
 
       project.getDomain()
+      $("body").niceScroll();
+      $('.customNiceScroll').niceScroll();
 
       setTimeout(function(){
         user.init('init')

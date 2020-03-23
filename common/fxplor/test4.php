@@ -8,6 +8,18 @@
       display: block;
       margin: 0 auto;
       }
+      div.tooltip {
+          position: absolute;
+          text-align: center;
+          width: 60px;
+          height: 28px;
+          padding: 2px;
+          font: 12px sans-serif;
+          background: lightsteelblue;
+          border: 0px;
+          border-radius: 8px;
+          pointer-events: none;
+      }
     </style>
   </head>
   <body>
@@ -31,7 +43,8 @@
   <script type="text/javascript" src="../../assets/custom/js/authen.js"></script>
   <script type="text/javascript" src="../../assets/custom/js/project.js"></script>
 
-  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- <script type="text/javascript" src="../../node_modules/d3-master/d3/dist/d3.js"></script> -->
+  <script src="https://d3js.org/d3.v5.js"></script>
   <script type="text/javascript">
 
     preload.hide()
@@ -57,6 +70,7 @@
                    var eachdegree = (360/point);
 
                    var sig_param = []
+                   var sig_param_value = []
                    var text_param = []
                    var label_param = []
                    var indepentent = []
@@ -64,11 +78,6 @@
                    var array_link = []
                    // Extract data for param only
                    for (var i = 4; i < snap.length ; i++) {
-                     // console.log(snap[i][0]); // Param
-                     // console.log(snap[i][1]); // Labe;;
-                     // console.log(snap[i][2]); // Significant for outcome 1;
-                     // console.log(snap[i][3]); // Significant for outcome 2;
-                     // console.log(snap[i][4]); // Significant for outcome 2;
                      text_param.push(snap[i][0])
                      label_param.push(snap[i][1])
 
@@ -78,19 +87,14 @@
                        depentent.push(snap[i][0])
                      }
 
-                     if((parseInt(snap[i][2]) >= 1) || (parseInt(snap[i][3]) == 1) || (parseInt(snap[i][4]) == 1)){
+                     if((parseInt(snap[i][2]) >= 1) || (parseInt(snap[i][3]) >= 1) || (parseInt(snap[i][4]) >= 1)){
                        sig_param.push(1)
+                       // sig_param_value.push(0)
                      }else{
                        sig_param.push(0)
+                       // sig_param_value.push(0)
                      }
                    }
-
-                   // console.log(text_param);
-                   // console.log(label_param);
-                   // console.log(indepentent);
-                   // console.log(depentent);
-
-                   // console.log(eachdegree);
 
                    var startPoint = 90 - eachdegree;
                    var originalOrigin = startPoint;
@@ -124,21 +128,8 @@
 
                    for (var i = 0; i < point; i++) {
                      startPoint = startPoint + eachdegree
-                     // startPoint = parseInt(startPoint)
-                     // console.log(startPoint);
-
                      var x = calculatePoint('x', startPoint, radious_x)
                      var y = calculatePoint('y', startPoint, radious_y)
-
-                     // if(i == 0){
-                     //   first_x = x; first_y = y;
-                     // }else if(i == 1){
-                     //   jsonLine.push({ "x1": first_x, "y1": first_y, "x2": x, "y2": y, "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" })
-                     // }else if(i == point - 1){
-                     //   jsonLine.push({ "x1": prev_x, "y1": prev_y, "x2": x, "y2": y, "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" })
-                     // }else{
-                     //   jsonLine.push({ "x1": prev_x, "y1": prev_y, "x2": x, "y2": y, "stroke_width": 5, "stroke" : "rgb(78, 78, 78)" })
-                     // }
 
                      if($outcome_c == 0){
                         param_label.push(depentent[outcome_ref])
@@ -221,6 +212,10 @@
     	return d;
     }
 
+    function getExplorvalue(id){
+      console.log(id);
+    }
+
     function displayVisualize(data, text_param, ed, snap){
 
       // console.log(ed);
@@ -229,34 +224,51 @@
       var origin = { x: 0, y: 0 };
       var jsonLine = [];
 
-      console.log(data);
+      // console.log(data);
+      // console.log(snap);
 
       $index = 0
       snap.forEach(i=>{
         if($index >= 4){
           i.forEach((k, x) => {
             var jj = i[0]
+            $line_width = 3
             if(x == 2){
+              if(parseInt(i[2]) == 1){
+                $line_width = 9
+              }else if(parseInt(i[2]) == 2){
+                $line_width = 5
+              }
               var arr0 = data.filter(d => d.param == "CESAREAN");
               var arr1 = data.filter(d => d.param == jj);
               if(parseInt(k) >= 1){
-                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2":( arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)", "Compair of" : "CESAREAN and " + i[0] })
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2":( arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": $line_width, "stroke" : "rgb(78, 78, 78)", "Compair of" : "CESAREAN and " + i[0] })
               }else{
                 // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "CESAREAN and " + i[0] })
               }
             }else if(x == 3){
+              if(parseInt(i[2]) == 1){
+                $line_width = 9
+              }else if(parseInt(i[2]) == 2){
+                $line_width = 5
+              }
               var arr0 = data.filter(d => d.param == "PRETERM");
               var arr1 = data.filter(d => d.param == jj);
               if(parseInt(k) >= 1){
-                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)", "Compair of" : "PRETERM and " + i[0] })
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": $line_width, "stroke" : "rgb(78, 78, 78)", "Compair of" : "PRETERM and " + i[0] })
               }else{
                 // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "PRETERM and " + i[0] })
               }
             }else if(x == 4){
+              if(parseInt(i[2]) == 1){
+                $line_width = 9
+              }else if(parseInt(i[2]) == 2){
+                $line_width = 5
+              }
               var arr0 = data.filter(d => d.param == "LBW");
               var arr1 = data.filter(d => d.param == jj);
               if(parseInt(k) >= 1){
-                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 5, "stroke" : "rgb(78, 78, 78)", "Compair of" : "LBW and " + i[0] })
+                jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": $line_width, "stroke" : "rgb(78, 78, 78)", "Compair of" : "LBW and " + i[0] })
               }else{
                 // jsonLine.push({ "x1": (arr0[0].x_axis * -1), "y1": (arr0[0].y_axis * -1), "x2": (arr1[0].x_axis * -1), "y2": (arr1[0].y_axis * -1), "stroke_width": 1, "stroke" : "rgb(232, 232, 232)", "Compair of" :  "LBW and " + i[0] })
               }
@@ -266,94 +278,130 @@
         $index++
       })
 
+      var svgContainer = d3.select("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .style("margin-top", "30px")
 
-      //
-      // var jsonCircles = [
-      //   { "x_axis": 200 + (width/2), "y_axis": 0 + (height/2), "radius": 38, "color" : "rgb(0, 148, 255)" },
-      //   { "x_axis": 161.80339887498948 + (width/2), "y_axis": 117.55705045849463 + (height/2), "radius": 20, "color" : "rgb(255, 107, 0)"},
-      //   { "x_axis": 61.80339887498949 + (width/2), "y_axis": 190.2113032590307 + (height/2), "radius": 20, "color" : "rgb(207, 207, 207)"},
-      //   { "x_axis": -61.80339887498947 + (width/2), "y_axis": 190.21130325903073 + (height/2), "radius": 20, "color" : "rgb(207, 207, 207)"},
-      //   { "x_axis": -161.80339887498945 + (width/2), "y_axis": 117.55705045849464 + (height/2)  , "radius": 30, "color" : "rgb(0, 148, 255)"},
-      //   { "x_axis": -200 + (width/2), "y_axis": 0 + (height/2), "radius": 20, "color" : "red"},
-      //   { "x_axis": -161.80339887498948 + (width/2), "y_axis": -117.5570504584946 + (height/2), "radius": 20, "color" : "red"},
-      //   { "x_axis": -61.80339887498951 + (width/2), "y_axis": -190.2113032590307 + (height/2), "radius": 20, "color" : "rgb(207, 207, 207)"},
-      //   { "x_axis": 61.80339887498945 + (width/2), "y_axis": -190.21130325903073 + (height/2), "radius": 30, "color" : "rgb(0, 148, 255)"},
-      //   { "x_axis": 161.80339887498945 + (width/2), "y_axis": -117.55705045849467 + (height/2), "radius": 20, "color" : "red"},
-      // ];
+      var group = svgContainer.append("g")
+                  .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
 
-        var svgContainer = d3.select("svg")
-                          .attr("width", width)
-                          .attr("height", height)
+      var circleRadious = width/2 - (data[0].radius * 3.8)
+      var circle = group.append("circle")
+                  .attr("r", circleRadious)
+                  .style("fill", "none")
+                  .style("stroke", "rgb(236, 236, 236)");
 
-        var group = svgContainer.append("g")
-                    .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
+      $c = 0
 
-        var circleRadious = width/2 - (data[0].radius * 3.8)
-         group.append("circle")
-                    .attr("r", circleRadious)
-                    .style("fill", "none")
-                    .style("stroke", "rgb(236, 236, 236)");
-        $c = 0
+      var text_ele = []
 
-        var text_ele = []
+      jsonLine.forEach(i=>{
+        var line = group.append("line")
+                  .attr("x1", i.x1)
+                  .attr("y1", i.y1)
+                  .attr("x2", i.x2)
+                  .attr("y2", i.y2)
+                  .attr("stroke-width", i.stroke_width)
+                  .attr("stroke", i.stroke)
+                  .style("cursor", "pointer")
+                  .on("mouseover", function(){
+                    var c_element = d3.select(this)
+                                      .attr("stroke-width", i.stroke_width * 1.25)
+                                      .attr("stroke", "rgb(255, 0, 0)")
+                  })
+                  .on("mouseout", function(){
+                    var c_element = d3.select(this)
+                                      .attr("stroke-width", i.stroke_width)
+                                      .attr("stroke", i.stroke)
+                  });
+        if(i.stroke_width == 1){
+          line.style("stroke-dasharray","5,5")
+        }
 
-        jsonLine.forEach(i=>{
-          var line = group.append("line")
-                    .attr("x1", i.x1)
-                    .attr("y1", i.y1)
-                    .attr("x2", i.x2)
-                    .attr("y2", i.y2)
-                    .attr("stroke-width", i.stroke_width)
-                    .attr("stroke", i.stroke);
-          if(i.stroke_width == 1){
-            line.style("stroke-dasharray","5,5")
+      })
+
+      data.forEach(i=>{
+
+        var x = i.degree
+        var rad = i.radius
+        var nx = (40 * calculateCOS(i.degree) + i.x_axis) + width/2
+        var ny = (40 * calculateSIN(i.degree) + i.y_axis) + height/2
+
+        dial = text_param;
+
+        // Position text at X=radius, Y=0 and rotate around the origin to get final position
+        group.selectAll("text")
+          .data(dial)
+          .enter()
+          .append("text")
+          .attr("x", circleRadious + 40)
+          // tweak digit Y position a little to ensure it's centred at desired position
+          .attr("y", "0.1em")
+          .text(function(d, i) { return d; })
+          .attr("transform", function(d, i) {
+            return "rotate(" + (-90 + ((360 / dial.length) * i)) + ")";
+          });
+
+
+        var param_circle = group.append("circle")
+                    .attr("id", "circle_" + $c )
+                    .attr("cx", i.x_axis * -1 )
+                    .attr("cy", i.y_axis * -1 )
+                    .attr("r", i.radius)
+                    .style("fill", i.color)
+                    .style("cursor", 'pointer')
+                    .on("click", function(){
+                      var c_element = d3.select(this)
+                      getExplorvalue(c_element.attr('id'))
+                    })
+                    .on("mouseover", function(){
+                      var c_element = d3.select(this)
+                                        .attr("r", i.radius * 1.25)
+                    })
+                    .on("mouseout", function(){
+                      var c_element = d3.select(this)
+                                        .attr("r", i.radius)
+                    });
+        $c++;
+      })
+
+      d3.select("#circle_0")
+
+
+
+      var curAngle = 0;
+      var interval = null;
+
+      svgContainer.call(d3.drag().on('drag', dragged));
+
+      function dragged() {
+                  var r = {
+                      x: d3.event.y,
+                      y: d3.event.x
+                  };
+                  svgContainer.attr("transform","rotate(" + r.x + "," + (origin.x) + "," + (origin.y) + ")" );
+              };
+
+      // Create Event Handlers for mouse
+      function handleMouseOver(d, i) {  // Add interactivity
+
+            // Use D3 to select element, change color and size
+            d3.select(this).attr({
+              fill: "orange",
+              // r: radius * 2
+            });
+
+            // Specify where to put label of text
+            svgContainer.append("text").attr({
+               id: "t" + d.x + "-" + d.y + "-" + i,  // Create an id for text so we can select it later for removing on mouseout
+                x: function() { return xScale(d.x) - 30; },
+                y: function() { return yScale(d.y) - 15; }
+            })
+            .text(function() {
+              return [d.x, d.y];  // Value of the text
+            });
           }
-
-        })
-
-        data.forEach(i=>{
-
-          var x = i.degree
-          var rad = i.radius
-          var nx = (40 * calculateCOS(i.degree) + i.x_axis) + width/2
-          var ny = (40 * calculateSIN(i.degree) + i.y_axis) + height/2
-
-          dial = text_param;
-
-          // Position text at X=radius, Y=0 and rotate around the origin to get final position
-          group.selectAll("text")
-            .data(dial)
-            .enter()
-            .append("text")
-            .attr("x", circleRadious + 40)
-            // tweak digit Y position a little to ensure it's centred at desired position
-            .attr("y", "0.1em")
-            .text(function(d, i) { return d; })
-            .attr("transform", function(d, i) { return "rotate(" + (-90 + ((360 / dial.length) * i)) + ")"; });
-
-          group.append("circle")
-                      .attr("cx", i.x_axis * -1 )
-                      .attr("cy", i.y_axis * -1 )
-                      .attr("r", i.radius)
-                      .style("fill", i.color);
-
-
-          $c++;
-        })
-
-
-        var curAngle = 0;
-        var interval = null;
-
-        svgContainer.call(d3.drag().on('drag', dragged));
-
-        function dragged() {
-                    var r = {
-                        x: d3.event.y,
-                        y: d3.event.x
-                    };
-                    svgContainer.attr("transform","rotate(" + r.x + "," + (origin.x) + "," + (origin.y) + ")" );
-                };
     }
 
   </script>
