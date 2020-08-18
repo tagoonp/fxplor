@@ -1,26 +1,26 @@
-PARAM,LABEL,CESAREAN,PRETERM,LBW
-N,Number of cases,494,113,140
-VIS_PCT,Visulize icon size percentage,100.00,22.87,28.34
-VIS_ICON_LEVEL,Iconic size level,1,4,3
-dm,Diabetes mellitus,0,0,0
-ht,Hypertension,0,0,0
-hd,Heart disease,0,0,0
-typa,Type of birth attendant,1,1,1
-age,Age,0,0,0
-rel,Religion,0,1,2
-edu,Education,0,0,0
-grav,Gravidity,0,0,0
-anc,ANC,2,0,0
-ga1st,GA at 1st ANC,3,0,0
-prot,Urine protine,1,0,0
-sbpad,SPB at admission,0,0,0
-dbpad,DBP at admission,0,0,2
-pr,Pulse rate,0,1,0
-fhr,Fetal heart rate,0,0,0
-labora,Labour status,1,0,0
-gaadm,GA at admission,0,0,0
-gadel,GA at delivery,0,1,1
-bll2h,Blood lose,1,0,0
-CESAREAN,Cesarean status,0,0,0
-PRETERM,Preterm status,0,0,1
-LBW,Lob birth weight status,0,0,0
+PARAM,LABEL,CESAREAN,PRETERM,LBW,P_CESAREAN,P_PRETERM,P_LBW
+N,Number of cases,494,113,140,,,
+VIS_PCT,Visulize icon size percentage,100,22.87,28.34,,,
+VIS_ICON_LEVEL,Iconic size level,1,4,3,,,
+dm,Diabetes mellitus,0,0,0,0.072,0.733,0.773
+ht,Hypertension,0,0,0,0.787,0.529,0.853
+hd,Heart disease,0,0,0,0.617,0.967,0.347
+typa,Type of birth attendant,1,1,1,< 0.001,< 0.001,< 0.001
+age,Age,0,0,0,0.567,0.076,0.161
+rel,Religion,0,1,2,0.365,< 0.001,0.006
+edu,Education,0,0,0,0.867,0.056,0.442
+grav,Gravidity,0,0,0,0.763,0.697,0.087
+anc,ANC,2,0,0,0.015,0.516,0.74
+ga1st,GA at 1st ANC,3,0,0,0.041,0.708,0.939
+prot,Urine protine,1,0,0,< 0.001,0.069,0.66
+sbpad,SPB at admission,0,0,0,0.54,0.832,0.979
+dbpad,DBP at admission,0,0,2,0.594,0.741,0.006
+pr,Pulse rate,0,1,0,0.924,0.032,0.92
+fhr,Fetal heart rate,0,0,0,0.197,0.944,0.086
+labora,Labour status,1,0,0,< 0.001,0.763,0.282
+gaadm,GA at admission,0,0,0,0.944,0.746,0.318
+gadel,GA at delivery,0,1,1,,< 0.001,< 0.001
+bll2h,Blood lose,1,0,0,< 0.001,0.084,0.742
+CESAREAN,Cesarean status,0,0,0,NaN,0.609,0.067
+PRETERM,Preterm status,0,0,1,0.35,NaN,< 0.001
+LBW,Lob birth weight status,0,0,0,0.832,< 0.001,NaN

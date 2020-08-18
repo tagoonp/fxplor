@@ -1,0 +1,5 @@
+var current_token = window.localStorage.getItem(conf.prefix + 'token')
+var current_user = window.localStorage.getItem(conf.prefix + 'uid')
+var current_role = window.localStorage.getItem(conf.prefix + 'role')
+var current_project = window.localStorage.getItem(conf.prefix + 'project')
+var current_data = window.localStorage.getItem(conf.prefix + 'data')

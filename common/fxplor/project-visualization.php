@@ -163,7 +163,6 @@
 
     var jxr = $.post(conf.api + 'project_visualize?stage=get_input_data', function(){}, 'json')
                .always(function(snap){
-                 console.log(snap);
                  if(fnc.json_exist(snap)){
                    $n_row = snap.length
                    var point = $n_row - 4
@@ -272,8 +271,12 @@
                      if($c == 0){
                        $('#lraListHeader').empty()
                        $('#lraListHeader').append('<tr style="background: rgb(1, 122, 249) !important;">')
+                       $col = 0
                        i.forEach(k => {
-                         $('#lraListHeader').append('<th class="text-white">' + k + '</th>')
+                         if($col < 5){
+                           $('#lraListHeader').append('<th class="text-white">' + k + '</th>')
+                         }
+                        $col++
                        })
                        $('#lraListHeader').append('</tr>')
 
@@ -295,10 +298,13 @@
                               $('#lraListBody').append('<td><strong>' + k + '</strong></td>')
                           }
 
-                          }else{
+                        }else{
+                          if($v > 3){
                             $('#lraListBody').append('<td>' + k + '</td>')
                           }
-                          $v++;
+
+                        }
+                        $v++;
                        })
                        $('#lraListBody').append('</tr>')
                      }

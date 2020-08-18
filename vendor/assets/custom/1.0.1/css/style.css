@@ -1,0 +1,32 @@
+html, body{
+
+}
+
+.th{ font-family: 'Kanit', sans-serif;  font-weight: 300 !important; }
+.th300{ font-family: 'Kanit', sans-serif; font-weight: 300 !important; }
+.th400{ font-family: 'Kanit', sans-serif; font-weight: 400 !important; }
+.fx08{ font-size: 0.8em; }
+.fx06{ font-size: 0.6em !important; }
+.dn{
+  display: none;
+}
+
+.reqDiv{
+  font-size: 0.8em;
+  padding: 5px 10px;
+}
+
+.item{ padding: 8px 10px; margin-bottom: 3px; cursor: pointer; border: none; border-width: 0px 0px 1px 0px;  border-color: rgb(245, 245, 245);}
+.non-active{ margin-bottom: 0px;}
+.non-active:hover{ color: #3425aa; border: none; border-width: 0px 0px 1px 0px; border-color: rgb(205, 205, 205); }
+.active:hover{ background: rgb(83, 85, 108); color: #fff; border: none; }
+.active { transition: 0.3s; background: rgb(255, 255, 255); border-radius: 5px; font-weight: 400 !important; }
+
+.thumbnail-icon{
+  transition: .2s;
+}
+
+.thumbnail-icon:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
